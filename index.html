@@ -20,9 +20,9 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="website">
-<meta property="og:title" content="faye">
+<meta property="og:title" content="off">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="faye">
+<meta property="og:site_name" content="off">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 
@@ -34,7 +34,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>faye</title>
+<title>off</title>
   
 
 
@@ -62,7 +62,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">faye</h1>
+      <h1 class="site-title">off</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -162,12 +162,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="faye">
+      <meta itemprop="name" content="off">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | faye">
+      <meta itemprop="name" content="undefined | off">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -184,7 +184,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-11-17 20:38:39 / Modified: 20:59:29" itemprop="dateCreated datePublished" datetime="2022-11-17T20:38:39+00:00">2022-11-17</time>
+      <time title="Created: 2022-11-17 20:38:39 / Modified: 21:07:11" itemprop="dateCreated datePublished" datetime="2022-11-17T20:38:39+00:00">2022-11-17</time>
     </span>
 
   
@@ -228,7 +228,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line"></span><br><span class="line">        prev = <span class="literal">None</span></span><br><span class="line">        curr = head</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> curr:</span><br><span class="line">            temp = curr.<span class="built_in">next</span></span><br><span class="line">            curr.<span class="built_in">next</span> = prev</span><br><span class="line">            prev = curr</span><br><span class="line">            curr = temp</span><br><span class="line">        <span class="keyword">return</span> prev</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>递归</li>
+<li>抄答案 递归</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, next=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.next = next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">reverse</span>(<span class="params">prev,curr</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> curr:</span><br><span class="line">                <span class="keyword">return</span> prev</span><br><span class="line">                </span><br><span class="line">            temp = curr.<span class="built_in">next</span></span><br><span class="line">            curr.<span class="built_in">next</span> = prev</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> reverse(curr,temp)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> reverse(<span class="literal">None</span>,head)</span><br></pre></td></tr></table></figure>
 
@@ -271,12 +271,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="faye">
+      <meta itemprop="name" content="off">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | faye">
+      <meta itemprop="name" content="undefined | off">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -293,7 +293,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-11-17 13:27:33 / Modified: 17:33:12" itemprop="dateCreated datePublished" datetime="2022-11-17T13:27:33+00:00">2022-11-17</time>
+      <time title="Created: 2022-11-17 13:27:33 / Modified: 21:07:32" itemprop="dateCreated datePublished" datetime="2022-11-17T13:27:33+00:00">2022-11-17</time>
     </span>
 
   
@@ -315,7 +315,7 @@
 
 
 <ol start="2">
-<li>双指针 从两边到中间</li>
+<li>抄答案 双指针 从两边到中间</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedSquares</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = [<span class="number">0</span>] * <span class="built_in">len</span>(nums)</span><br><span class="line">       </span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">        index = <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            <span class="keyword">if</span> nums[left]**<span class="number">2</span> &lt; nums[right]**<span class="number">2</span>:</span><br><span class="line">                res[index] = nums[right]**<span class="number">2</span></span><br><span class="line">                index -= <span class="number">1</span></span><br><span class="line">                right -=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res[index] = nums[left]**<span class="number">2</span></span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                index -=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
@@ -327,7 +327,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minSubArrayLen</span>(<span class="params">self, target: <span class="built_in">int</span>, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span>  nums[<span class="number">0</span>] == target:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        n = nums[left] + nums[right]</span><br><span class="line">        res = <span class="number">100001</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> left &lt;= <span class="built_in">len</span>(nums)-<span class="number">1</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> nums[left] &gt;= target <span class="keyword">or</span> nums[right] &gt;= target :</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> n &gt;= target :</span><br><span class="line">                res =  <span class="built_in">min</span>(res,right-left+<span class="number">1</span>)</span><br><span class="line">                n -= nums[left]</span><br><span class="line">                left+=<span class="number">1</span>     </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> right == <span class="built_in">len</span>(nums)-<span class="number">1</span>:</span><br><span class="line">                    n +=  nums[right+<span class="number">1</span>]</span><br><span class="line">                    right+=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> res == <span class="number">100001</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
 <p>一开始还以为是找等于  <strong>认真读题！！</strong></p>
-<p>2. </p>
+<ol start="2">
+<li>抄答案</li>
+</ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minSubArrayLen</span>(<span class="params">self, target: <span class="built_in">int</span>, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        res = <span class="number">100001</span></span><br><span class="line">        n = <span class="number">0</span></span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            n += nums[i]</span><br><span class="line">            <span class="keyword">while</span> n &gt;= target:</span><br><span class="line">                res = <span class="built_in">min</span>(res, i-index+<span class="number">1</span>)</span><br><span class="line">                n -= nums[index]</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">if</span> res==<span class="number">100001</span> <span class="keyword">else</span> res</span><br></pre></td></tr></table></figure>
 
 <p>同上</p>
@@ -373,12 +375,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="faye">
+      <meta itemprop="name" content="off">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | faye">
+      <meta itemprop="name" content="undefined | off">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
