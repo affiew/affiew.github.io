@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -145,6 +145,124 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/28/Day13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/28/Day13/" class="post-title-link" itemprop="url">代码随想录 Day13 | Stack & Queue | 239 347</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-11-28 14:47:49 / Modified: 22:27:46" itemprop="dateCreated datePublished" datetime="2022-11-28T14:47:49+00:00">2022-11-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Leetcode-239-Sliding-Window-Maximum"><a href="#Leetcode-239-Sliding-Window-Maximum" class="headerlink" title="Leetcode 239.  Sliding Window Maximum"></a>Leetcode 239.  Sliding Window Maximum</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sliding-window-maximum/">https://leetcode.com/problems/sliding-window-maximum/</a></p>
+<ol>
+<li>一开始思路想错了 好难 不会</li>
+</ol>
+<ul>
+<li>单调队列<ul>
+<li>pop(value)：如果窗口移除的元素value等于单调队列的出口元素，那么队列弹出元素，否则不用任何操作</li>
+<li>push(value)：如果push的元素value大于入口元素的数值，那么就将队列入口的元素弹出，直到push元素的数值小于等于队列入口元素的数值为止</li>
+<li>保持如上规则，每次窗口移动的时候，只要que.front()就可以返回当前窗口的最大值。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Copy自https://programmercarl.com/0239.滑动窗口最大值.html</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyQueue</span>: <span class="comment">#单调队列（从大到小</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.queue = deque() <span class="comment">#这里需要使用deque实现单调队列，直接使用list会超时</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#每次弹出的时候，比较当前要弹出的数值是否等于队列出口元素的数值，如果相等则弹出。</span></span><br><span class="line">    <span class="comment">#同时pop之前判断队列当前是否为空。</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="keyword">if</span> self.queue <span class="keyword">and</span> value == self.queue[<span class="number">0</span>]:</span><br><span class="line">            self.queue.popleft()<span class="comment">#list.pop()时间复杂度为O(n),这里需要使用collections.deque()</span></span><br><span class="line">            </span><br><span class="line">    <span class="comment">#如果push的数值大于入口元素的数值，那么就将队列后端的数值弹出，直到push的数值小于等于队列入口元素的数值为止。</span></span><br><span class="line">    <span class="comment">#这样就保持了队列里的数值是单调从大到小的了。</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="keyword">while</span> self.queue <span class="keyword">and</span> value &gt; self.queue[-<span class="number">1</span>]:</span><br><span class="line">            self.queue.pop()</span><br><span class="line">        self.queue.append(value)</span><br><span class="line">        </span><br><span class="line">    <span class="comment">#查询当前队列里的最大值 直接返回队列前端也就是front就可以了。</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">front</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.queue[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxSlidingWindow</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        que = MyQueue()</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k): <span class="comment">#先将前k的元素放进队列</span></span><br><span class="line">            que.push(nums[i])</span><br><span class="line">        result.append(que.front()) <span class="comment">#result 记录前k的元素的最大值</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k, <span class="built_in">len</span>(nums)):</span><br><span class="line">            que.pop(nums[i - k]) <span class="comment">#滑动窗口移除最前面元素</span></span><br><span class="line">            que.push(nums[i]) <span class="comment">#滑动窗口前加入最后面的元素</span></span><br><span class="line">            result.append(que.front()) <span class="comment">#记录对应的最大值</span></span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">      </span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>python collections</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxSlidingWindow</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        d = collections.deque()</span><br><span class="line">        out = []</span><br><span class="line">        <span class="keyword">for</span> i, n <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">           </span><br><span class="line">            <span class="keyword">while</span> d <span class="keyword">and</span> nums[d[-<span class="number">1</span>]] &lt; n:</span><br><span class="line">                d.pop()</span><br><span class="line">               </span><br><span class="line">            d.append(i)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> d[<span class="number">0</span>] == i - k:</span><br><span class="line">                d.popleft()</span><br><span class="line">               </span><br><span class="line">            <span class="keyword">if</span> i&gt;=k-<span class="number">1</span>:</span><br><span class="line">                out.append(nums[d[<span class="number">0</span>]])</span><br><span class="line">			</span><br><span class="line">        <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-347-Top-K-Frequent-Elements"><a href="#Leetcode-347-Top-K-Frequent-Elements" class="headerlink" title="Leetcode 347. Top K Frequent Elements"></a>Leetcode 347. Top K Frequent Elements</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/description/">https://leetcode.com/problems/top-k-frequent-elements/description/</a></p>
+<ol>
+<li><p>统计频率 出现n次放进freq[n] freq从后向前遍历 </p>
+<p>Neetcode: <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=YPTqKIgVk-k">https://www.youtube.com/watch?v=YPTqKIgVk-k</a></p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">topKFrequent</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        freq = [[] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums) + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> nums:</span><br><span class="line">            count[n] = <span class="number">1</span> + count.get(n, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">for</span> n, c <span class="keyword">in</span> count.items():</span><br><span class="line">            freq[c].append(n)</span><br><span class="line"></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(freq) - <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> n <span class="keyword">in</span> freq[i]:</span><br><span class="line">                res.append(n)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(res) == k:</span><br><span class="line">                    <span class="keyword">return</span> res</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>随想录：</li>
+</ol>
+<ul>
+<li><p>可以使用<strong>优先级队列</strong>。其实<strong>就是一个披着队列外衣的堆</strong>，因为优先级队列对外接口只是从队头取元素，从队尾添加元素，再无其他取元素的方式，看起来就是一个队列。</p>
+</li>
+<li><p><strong>堆是一棵完全二叉树，树中每个结点的值都不小于（或不大于）其左右孩子的值。</strong> 如果父亲结点是大于等于左右孩子就是<strong>大顶堆</strong>，小于等于左右孩子就是<strong>小顶堆</strong>。</p>
+</li>
+<li><p>定义一个大小为k的大顶堆，在每次移动更新大顶堆的时候，每次弹出都把最大的元素弹出去了，那么怎么保留下来前K个高频元素呢。</p>
+<p>而且使用大顶堆就要把所有元素都进行排序，<strong>所以我们要用小顶堆，因为要统计最大前k个元素，只有小顶堆每次将最小的元素弹出，最后小顶堆里积累的才是前k个最大元素。</strong></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#时间复杂度：O(nlogk)</span></span><br><span class="line"><span class="comment">#空间复杂度：O(n)</span></span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">topKFrequent</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="comment">#要统计元素出现频率</span></span><br><span class="line">        map_ = &#123;&#125; <span class="comment">#nums[i]:对应出现的次数</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            map_[nums[i]] = map_.get(nums[i], <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#对频率排序</span></span><br><span class="line">        <span class="comment">#定义一个小顶堆，大小为k</span></span><br><span class="line">        pri_que = [] <span class="comment">#小顶堆</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#用固定大小为k的小顶堆，扫面所有频率的数值</span></span><br><span class="line">        <span class="keyword">for</span> key, freq <span class="keyword">in</span> map_.items():</span><br><span class="line">            heapq.heappush(pri_que, (freq, key))</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(pri_que) &gt; k: <span class="comment">#如果堆的大小大于了K，则队列弹出，保证堆的大小一直为k</span></span><br><span class="line">                heapq.heappop(pri_que)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#找出前K个高频元素，因为小顶堆先弹出的是最小的，所以倒序来输出到数组</span></span><br><span class="line">        result = [<span class="number">0</span>] * k</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            result[i] = heapq.heappop(pri_que)[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>单调队列 优先级队列</p>
+<p>还需要掌握</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -184,7 +302,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-11-28 14:02:09 / Modified: 14:46:48" itemprop="dateCreated datePublished" datetime="2022-11-28T14:02:09+00:00">2022-11-28</time>
+      <time title="Created: 2022-11-28 14:02:09 / Modified: 22:13:07" itemprop="dateCreated datePublished" datetime="2022-11-28T14:02:09+00:00">2022-11-28</time>
     </span>
 
   
@@ -221,6 +339,7 @@
 
 
 
+<hr>
 <h3 id="Leetcode-150-Evaluate-Reverse-Polish-Notation"><a href="#Leetcode-150-Evaluate-Reverse-Polish-Notation" class="headerlink" title="Leetcode 150. Evaluate Reverse Polish Notation"></a>Leetcode 150. Evaluate Reverse Polish Notation</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/evaluate-reverse-polish-notation/">https://leetcode.com/problems/evaluate-reverse-polish-notation/</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">evalRPN</span>(<span class="params">self, tokens: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        stack = []</span><br><span class="line">        <span class="keyword">for</span> t <span class="keyword">in</span> tokens:</span><br><span class="line">            <span class="keyword">if</span> t <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">&quot;+-*/&quot;</span>:</span><br><span class="line">                stack.append(<span class="built_in">int</span>(t))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                r, l = stack.pop(), stack.pop()</span><br><span class="line">                <span class="keyword">if</span> t == <span class="string">&quot;+&quot;</span>:</span><br><span class="line">                    stack.append(l+r)</span><br><span class="line">                <span class="keyword">elif</span> t == <span class="string">&quot;-&quot;</span>:</span><br><span class="line">                    stack.append(l-r)</span><br><span class="line">                <span class="keyword">elif</span> t == <span class="string">&quot;*&quot;</span>:</span><br><span class="line">                    stack.append(l*r)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    stack.append(<span class="built_in">int</span>(<span class="built_in">float</span>(l)/r))</span><br><span class="line">        <span class="keyword">return</span> stack.pop()</span><br></pre></td></tr></table></figure>
 
@@ -273,7 +392,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/24/Day10/" class="post-title-link" itemprop="url">代码随想录 Day10 | Stack Queue | 232 225</a>
+          <a href="/2022/11/24/Day10/" class="post-title-link" itemprop="url">代码随想录 Day10 | Stack & Queue | 232 225</a>
         </h2>
 
         <div class="post-meta-container">
@@ -283,9 +402,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-11-24 14:55:20 / Modified: 15:32:46" itemprop="dateCreated datePublished" datetime="2022-11-24T14:55:20+00:00">2022-11-24</time>
+      <time title="Created: 2022-11-24 14:55:20" itemprop="dateCreated datePublished" datetime="2022-11-24T14:55:20+00:00">2022-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-11-28 19:41:54" itemprop="dateModified" datetime="2022-11-28T19:41:54+00:00">2022-11-28</time>
     </span>
 
   
@@ -1325,109 +1450,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/17/Day1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/17/Day1/" class="post-title-link" itemprop="url">代码随想录 Day1 | Array | 704 27</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-11-17 05:52:18 / Modified: 21:18:11" itemprop="dateCreated datePublished" datetime="2022-11-17T05:52:18+00:00">2022-11-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Leetcode-704-Binary-Search"><a href="#Leetcode-704-Binary-Search" class="headerlink" title="Leetcode 704. Binary Search"></a>Leetcode 704. Binary Search</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/">https://leetcode.com/problems/binary-search/</a></p>
-<ol>
-<li>之前的写法（左闭右闭）</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            mid = left + ((right - left) // <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">if</span> nums[mid]==target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">if</span> nums[mid]&gt;target:</span><br><span class="line">                right = mid-<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left = mid+<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>[left, right] 要用 &lt;&#x3D;</li>
-<li>right &#x3D; middle - 1</li>
-</ul>
-<ol start="2">
-<li>左闭右开</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            mid = left + ((right - left) // <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">if</span> nums[mid]==target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">if</span> nums[mid]&gt;target:</span><br><span class="line">                right = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left = mid+<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>[left, right) 要用 &lt;</li>
-<li>right &#x3D; middle</li>
-</ul>
-<p>总结： 区间的定义是不变量，在循环中坚持根据查找区间的定义来做边界处理，就是循环不变量规则。</p>
-<hr>
-<h3 id="Leetcode-27-Remove-Element"><a href="#Leetcode-27-Remove-Element" class="headerlink" title="Leetcode 27. Remove Element"></a>Leetcode 27. Remove Element</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-element/">https://leetcode.com/problems/remove-element/</a></p>
-<ol>
-<li>快慢指针</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">removeElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], val: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        </span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> nums[j] == val:</span><br><span class="line">                nums[i] = nums[j]</span><br><span class="line">                i+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>相向双指针</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">removeElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], val: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> <span class="keyword">not</span> nums[left] == val:</span><br><span class="line">                left+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] == val:</span><br><span class="line">                right-=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> left &lt; right:</span><br><span class="line">                nums[left] = nums[right]</span><br><span class="line">                left+=<span class="number">1</span></span><br><span class="line">                right-=<span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> left</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 </div>
   </main>
