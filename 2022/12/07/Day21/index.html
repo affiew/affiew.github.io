@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Leetcode 530. Minimum Absolute Difference in BSThttps:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;minimum-absolute-difference-in-bst&#x2F;  中序遍历 然后遍历绝对差值  12345678910111213141516171819202122232425# Definition for a binary tre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录 Day21 | Binary Tree | 530 501 236">
+<meta property="og:url" content="http://example.com/2022/12/07/Day21/index.html">
+<meta property="og:site_name" content="off">
+<meta property="og:description" content="Leetcode 530. Minimum Absolute Difference in BSThttps:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;minimum-absolute-difference-in-bst&#x2F;  中序遍历 然后遍历绝对差值  12345678910111213141516171819202122232425# Definition for a binary tre">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-07T01:16:07.000Z">
+<meta property="article:modified_time" content="2022-12-07T02:01:11.638Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/12/07/Day21/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/12/07/Day21/","path":"2022/12/07/Day21/","title":"代码随想录 Day21 | Binary Tree | 530 501 236"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>代码随想录 Day21 | Binary Tree | 530 501 236 | off</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">off</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-530-Minimum-Absolute-Difference-in-BST"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 530. Minimum Absolute Difference in BST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-501-Find-Mode-in-Binary-Search-Tree"><span class="nav-number">2.</span> <span class="nav-text">Leetcode 501. Find Mode in Binary Search Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-236-Lowest-Common-Ancestor-of-a-Binary-Tree"><span class="nav-number">3.</span> <span class="nav-text">Leetcode 236. Lowest Common Ancestor of a Binary Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E6%94%B6%E8%8E%B7"><span class="nav-number">4.</span> <span class="nav-text">今日收获</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/07/Day21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="代码随想录 Day21 | Binary Tree | 530 501 236 | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码随想录 Day21 | Binary Tree | 530 501 236
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-12-07 01:16:07 / Modified: 02:01:11" itemprop="dateCreated datePublished" datetime="2022-12-07T01:16:07+00:00">2022-12-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Leetcode-530-Minimum-Absolute-Difference-in-BST"><a href="#Leetcode-530-Minimum-Absolute-Difference-in-BST" class="headerlink" title="Leetcode 530. Minimum Absolute Difference in BST"></a>Leetcode 530. Minimum Absolute Difference in BST</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-absolute-difference-in-bst/">https://leetcode.com/problems/minimum-absolute-difference-in-bst/</a></p>
+<ol>
+<li>中序遍历 然后遍历绝对差值</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        tree_list = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traverse</span>(<span class="params">root: TreeNode</span>) -&gt; <span class="literal">None</span>: </span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            traverse(root.left)</span><br><span class="line">            tree_list.append(root.val)</span><br><span class="line">            traverse(root.right)</span><br><span class="line">            </span><br><span class="line">        traverse(root) </span><br><span class="line"></span><br><span class="line">        minimum = <span class="number">10000</span>         </span><br><span class="line">       </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(tree_list)): </span><br><span class="line">            minimum = <span class="built_in">min</span>(minimum, tree_list[i] - tree_list[i - <span class="number">1</span>])              </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> minimum </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在中序遍历过程中计算</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        minimum = <span class="number">10000</span>   </span><br><span class="line">        pre = <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traverse</span>(<span class="params">root: TreeNode</span>) -&gt; <span class="literal">None</span>: </span><br><span class="line">            <span class="keyword">nonlocal</span> pre, minimum</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            traverse(root.left)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> pre != <span class="literal">None</span>:</span><br><span class="line">                minimum = <span class="built_in">min</span>(minimum, root.val - pre.val)</span><br><span class="line">            pre = root</span><br><span class="line">            </span><br><span class="line">            traverse(root.right)</span><br><span class="line">            </span><br><span class="line">        traverse(root) </span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> minimum </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>迭代（不想写了</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        stack = []</span><br><span class="line">        cur = root</span><br><span class="line">        pre = <span class="literal">None</span></span><br><span class="line">        result = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">or</span> stack:</span><br><span class="line">            <span class="keyword">if</span> cur: <span class="comment"># 指针来访问节点，访问到最底层</span></span><br><span class="line">                stack.append(cur)</span><br><span class="line">                cur = cur.left</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment"># 逐一处理节点</span></span><br><span class="line">                cur = stack.pop()</span><br><span class="line">                <span class="keyword">if</span> pre: <span class="comment"># 当前节点和前节点的值的差值</span></span><br><span class="line">                    result = <span class="built_in">min</span>(result, <span class="built_in">abs</span>(cur.val - pre.val))</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = cur.right</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-501-Find-Mode-in-Binary-Search-Tree"><a href="#Leetcode-501-Find-Mode-in-Binary-Search-Tree" class="headerlink" title="Leetcode 501. Find Mode in Binary Search Tree"></a>Leetcode 501. Find Mode in Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-mode-in-binary-search-tree/">https://leetcode.com/problems/find-mode-in-binary-search-tree/</a></p>
+<ol>
+<li><p>hash table 统计次数排序 （不是二叉树也可以</p>
+</li>
+<li><p>如果 频率等于最大频率，把这个元素加入到结果集中</p>
+<p>频率大于 max的时候，不仅要更新max，而且要清空结果集，因为结果集之前的元素都失效了</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findMode</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        maximum = <span class="number">1</span></span><br><span class="line">        pre = <span class="literal">None</span></span><br><span class="line">        freq = <span class="number">1</span></span><br><span class="line">        res = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traverse</span>(<span class="params">root: TreeNode</span>) -&gt; <span class="literal">None</span>: </span><br><span class="line">            <span class="keyword">nonlocal</span> pre, maximum, freq, res</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            traverse(root.left)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> pre != <span class="literal">None</span> <span class="keyword">and</span> pre.val == root.val:</span><br><span class="line">                freq += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> maximum == freq:</span><br><span class="line">                    res.append(root.val)</span><br><span class="line">                <span class="keyword">if</span> maximum &lt; freq:</span><br><span class="line">                    maximum = freq</span><br><span class="line">                    res = [root.val]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                freq = <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> maximum == freq:</span><br><span class="line">                    res.append(root.val)</span><br><span class="line">            pre = root</span><br><span class="line">            traverse(root.right)</span><br><span class="line">            </span><br><span class="line">        traverse(root) </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h3 id="Leetcode-236-Lowest-Common-Ancestor-of-a-Binary-Tree"><a href="#Leetcode-236-Lowest-Common-Ancestor-of-a-Binary-Tree" class="headerlink" title="Leetcode 236. Lowest Common Ancestor of a Binary Tree"></a>Leetcode 236. Lowest Common Ancestor of a Binary Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/</a></p>
+<ol>
+<li><p>想到了后序遍历 但没处理好p&#x2F;q是root</p>
+</li>
+<li><p>如果left 和 right都不为空，说明此时root就是最近公共节点。</p>
+<p>如果left为空，right不为空，就返回right，说明目标节点是通过right返回的，反之亦然。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root <span class="keyword">or</span> root == p <span class="keyword">or</span> root == q:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">        left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> left <span class="keyword">and</span> right:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span> left:</span><br><span class="line">            <span class="keyword">return</span> left</span><br><span class="line">        <span class="keyword">return</span> right</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>二叉搜索树的最小绝对差、众数</p>
+<p>二叉树的最近公共祖先 </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/12/05/Day20/" rel="prev" title="代码随想录 Day20 | Binary Tree | 654 617 700 98">
+                  <i class="fa fa-chevron-left"></i> 代码随想录 Day20 | Binary Tree | 654 617 700 98
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
