@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Leetcode 235. Lowest Common Ancestor of a Binary Search Treehttps:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;lowest-common-ancestor-of-a-binary-search-tree&#x2F;description&#x2F;  如果p&#x2F;q是root，return root 如果pq在root两边，return ro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录 Day22 | Binary Tree | 530 501 236">
+<meta property="og:url" content="http://example.com/2022/12/07/Day22/index.html">
+<meta property="og:site_name" content="off">
+<meta property="og:description" content="Leetcode 235. Lowest Common Ancestor of a Binary Search Treehttps:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;lowest-common-ancestor-of-a-binary-search-tree&#x2F;description&#x2F;  如果p&#x2F;q是root，return root 如果pq在root两边，return ro">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-07T12:34:20.000Z">
+<meta property="article:modified_time" content="2022-12-07T15:31:59.231Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/12/07/Day22/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/12/07/Day22/","path":"2022/12/07/Day22/","title":"代码随想录 Day22 | Binary Tree | 530 501 236"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>代码随想录 Day22 | Binary Tree | 530 501 236 | off</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">off</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 235. Lowest Common Ancestor of a Binary Search Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-701-Insert-into-a-Binary-Search-Tree"><span class="nav-number">2.</span> <span class="nav-text">Leetcode 701. Insert into a Binary Search Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-450-Delete-Node-in-a-BST"><span class="nav-number">3.</span> <span class="nav-text">Leetcode 450. Delete Node in a BST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E6%94%B6%E8%8E%B7"><span class="nav-number">4.</span> <span class="nav-text">今日收获</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/07/Day22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="代码随想录 Day22 | Binary Tree | 530 501 236 | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码随想录 Day22 | Binary Tree | 530 501 236
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-12-07 12:34:20 / Modified: 15:31:59" itemprop="dateCreated datePublished" datetime="2022-12-07T12:34:20+00:00">2022-12-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Leetcode-235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree"><a href="#Leetcode-235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree" class="headerlink" title="Leetcode 235. Lowest Common Ancestor of a Binary Search Tree"></a>Leetcode 235. Lowest Common Ancestor of a Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/">https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/</a></p>
+<ol>
+<li><p>如果p&#x2F;q是root，return root</p>
+<p>如果pq在root两边，return root</p>
+<p>如果pq都小于root，左边搜索</p>
+<p>如果pq都大于root，右边搜索</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> p == root <span class="keyword">or</span> q == root:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span>  (p.val &lt; root.val <span class="keyword">and</span> q.val &gt; root.val) <span class="keyword">or</span> (q.val &lt; root.val <span class="keyword">and</span> p.val &gt; root.val):</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span> p.val &lt; root.val <span class="keyword">and</span> q.val &lt; root.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        <span class="keyword">if</span> p.val &gt; root.val <span class="keyword">and</span> q.val &gt; root.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">          </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>简单点</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> root.val &gt; p.val <span class="keyword">and</span> root.val &gt; q.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        <span class="keyword">if</span> root.val &lt; p.val <span class="keyword">and</span> root.val &lt; q.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>迭代法</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">if</span> root.val &gt; p.val <span class="keyword">and</span> root.val &gt; q.val:</span><br><span class="line">                root = root.left</span><br><span class="line">            <span class="keyword">elif</span> root.val &lt; p.val <span class="keyword">and</span> root.val &lt; q.val:</span><br><span class="line">                root = root.right</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> root</span><br><span class="line">              </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-701-Insert-into-a-Binary-Search-Tree"><a href="#Leetcode-701-Insert-into-a-Binary-Search-Tree" class="headerlink" title="Leetcode 701. Insert into a Binary Search Tree"></a>Leetcode 701. Insert into a Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/insert-into-a-binary-search-tree/">https://leetcode.com/problems/insert-into-a-binary-search-tree/</a></p>
+<ol>
+<li>如果比root小 往左边插 如果比root大往右边插</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insertIntoBST</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode], val: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> TreeNode(val)</span><br><span class="line">          </span><br><span class="line">        <span class="keyword">if</span> val &lt; root.val:</span><br><span class="line">            <span class="keyword">if</span> root.left == <span class="literal">None</span>:</span><br><span class="line">                root.left = TreeNode(val)    </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.insertIntoBST(root.left, val)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> val &gt; root.val:</span><br><span class="line">            <span class="keyword">if</span> root.right == <span class="literal">None</span>:</span><br><span class="line">                root.right = TreeNode(val)              </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.insertIntoBST(root.right, val)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<p>按照二叉搜索树的规则去遍历，遇到空节点就插入节点</p>
+<ol start="2">
+<li>迭代</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insertIntoBST</span>(<span class="params">self, root: TreeNode, val: <span class="built_in">int</span></span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">            <span class="keyword">return</span> TreeNode(val)</span><br><span class="line">        parent = <span class="literal">None</span> <span class="comment"># 此步可以省略</span></span><br><span class="line">        cur = root</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 用while循环不断地找新节点的parent</span></span><br><span class="line">        <span class="keyword">while</span> cur: </span><br><span class="line">            parent = cur  <span class="comment"># 首先保存当前非空节点作为下一次迭代的父节点</span></span><br><span class="line">            <span class="keyword">if</span> cur.val &lt; val: </span><br><span class="line">                cur = cur.right</span><br><span class="line">            <span class="keyword">elif</span> cur.val &gt; val: </span><br><span class="line">                cur = cur.left</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 运行到这意味着已经跳出上面的while循环, </span></span><br><span class="line">        <span class="comment"># 同时意味着新节点的parent已经被找到.</span></span><br><span class="line">        <span class="comment"># parent已被找到, 新节点已经ready. 把两个节点黏在一起就好了. </span></span><br><span class="line">        <span class="keyword">if</span> parent.val &gt; val: </span><br><span class="line">            parent.left = TreeNode(val)</span><br><span class="line">        <span class="keyword">else</span>: </span><br><span class="line">            parent.right = TreeNode(val)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-450-Delete-Node-in-a-BST"><a href="#Leetcode-450-Delete-Node-in-a-BST" class="headerlink" title="Leetcode 450. Delete Node in a BST"></a>Leetcode 450. Delete Node in a BST</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/delete-node-in-a-bst/">https://leetcode.com/problems/delete-node-in-a-bst/</a></p>
+<ol>
+<li><p>好难 </p>
+</li>
+<li><p>五种情况：</p>
+<ul>
+<li>第一种情况：没找到删除的节点，遍历到空节点直接返回了</li>
+<li>找到删除的节点<ul>
+<li>第二种情况：左右孩子都为空，直接删除节点， 返回NULL为根节点</li>
+<li>第三种情况：删除节点的左孩子为空，右孩子不为空，删除节点，右孩子补位，返回右孩子为根节点</li>
+<li>第四种情况：删除节点的右孩子为空，左孩子不为空，删除节点，左孩子补位，返回左孩子为根节点</li>
+<li>第五种情况：左右孩子节点都不为空，则将删除节点的左子树头结点（左孩子）放到删除节点的右子树的最左面节点的左孩子上，返回删除节点右孩子为新的根节点。（就是这个情况没想出来怎么处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteNode</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode], key: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[TreeNode]:        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root : <span class="keyword">return</span>  <span class="literal">None</span> <span class="comment"># 节点为空，返回</span></span><br><span class="line">        <span class="keyword">if</span> root.val &lt; key :</span><br><span class="line">            root.right = self.deleteNode(root.right, key)</span><br><span class="line">        <span class="keyword">elif</span> root.val &gt; key :</span><br><span class="line">            root.left = self.deleteNode(root.left, key)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 当前节点的左子树为空，返回当前的右子树</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root.left : <span class="keyword">return</span> root.right</span><br><span class="line">            <span class="comment"># 当前节点的右子树为空，返回当前的左子树</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root.right: <span class="keyword">return</span> root.left</span><br><span class="line">            <span class="comment"># 左右子树都不为空，找到右孩子的最左节点 记为p</span></span><br><span class="line">            node = root.right</span><br><span class="line">            <span class="keyword">while</span> node.left :</span><br><span class="line">                node = node.left</span><br><span class="line">            <span class="comment"># 将当前节点的左子树挂在p的左孩子上</span></span><br><span class="line">            node.left = root.left</span><br><span class="line">            <span class="comment"># 当前节点的右子树替换掉当前节点，完成当前节点的删除</span></span><br><span class="line">            root = root.right</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>二叉搜索树的最近公共祖先 二叉搜索树插入&#x2F;删除</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/12/07/Day21/" rel="prev" title="代码随想录 Day21 | Binary Tree | 530 501 236">
+                  <i class="fa fa-chevron-left"></i> 代码随想录 Day21 | Binary Tree | 530 501 236
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
