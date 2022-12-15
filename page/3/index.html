@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -145,6 +145,320 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/21/Day7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/21/Day7/" class="post-title-link" itemprop="url">代码随想录 Day7 | Hash Table | 454 383 15 18</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-11-21 14:40:13 / Modified: 23:35:19" itemprop="dateCreated datePublished" datetime="2022-11-21T14:40:13+00:00">2022-11-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Leetcode-454-4Sum-II"><a href="#Leetcode-454-4Sum-II" class="headerlink" title="Leetcode 454. 4Sum II"></a>Leetcode 454. 4Sum II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/4sum-ii/">https://leetcode.com/problems/4sum-ii/</a></p>
+<p>1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fourSumCount</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>], nums3: <span class="type">List</span>[<span class="built_in">int</span>], nums4: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums1)</span><br><span class="line">        nums12 = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                addnum = nums1[i]+nums2[j]</span><br><span class="line">                nums12[addnum] = nums12.get(addnum, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                num = <span class="number">0</span> - nums3[i] - nums4[j]</span><br><span class="line">                <span class="keyword">if</span> num <span class="keyword">in</span> nums12:</span><br><span class="line">                    count += nums12[num]</span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<p>一开始忘记考虑重复的 nums1[i]+nums2[j] 用成set了</p>
+<ol start="2">
+<li>随想录：<ol>
+<li>首先定义 一个unordered_map，key放a和b两数之和，value 放a和b两数之和出现的次数。</li>
+<li>遍历大A和大B数组，统计两个数组元素之和，和出现的次数，放到map中。</li>
+<li>定义int变量count，用来统计 a+b+c+d &#x3D; 0 出现的次数。</li>
+<li>在遍历大C和大D数组，找到如果 0-(c+d) 在map中出现过的话，就用count把map中key对应的value也就是出现次数统计出来。</li>
+<li>最后返回统计值 count</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="Leetcode-383-Ransom-Note"><a href="#Leetcode-383-Ransom-Note" class="headerlink" title="Leetcode 383. Ransom Note"></a>Leetcode 383. Ransom Note</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/ransom-note/">https://leetcode.com/problems/ransom-note/</a></p>
+<ol>
+<li>hashmap</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canConstruct</span>(<span class="params">self, ransomNote: <span class="built_in">str</span>, magazine: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        hashmap = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> magazine:</span><br><span class="line">            hashmap[c] = hashmap.get(c, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> ransomNote:</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> hashmap <span class="keyword">and</span> hashmap[c] != <span class="number">0</span> :</span><br><span class="line">                hashmap[c] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>又忘记了 用数组就够了<ul>
+<li>用一个长度为26的数组还记录magazine里字母出现的次数</li>
+<li>使用map的空间消耗要比数组大一些的，因为map要维护红黑树或者哈希表，而且还要做哈希函数，是费时的。所以数组更加简单直接有效</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canConstruct</span>(<span class="params">self, ransomNote: <span class="built_in">str</span>, magazine: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        arr = [<span class="number">0</span>] * <span class="number">26</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> magazine:</span><br><span class="line">            arr[<span class="built_in">ord</span>(x) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> ransomNote:</span><br><span class="line">            <span class="keyword">if</span> arr[<span class="built_in">ord</span>(x) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                arr[<span class="built_in">ord</span>(x) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-15-3Sum"><a href="#Leetcode-15-3Sum" class="headerlink" title="Leetcode 15. 3Sum"></a>Leetcode 15. 3Sum</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/3sum/">https://leetcode.com/problems/3sum/</a></p>
+<ol>
+<li>想用hashmap 有点太复杂了 超时 写不出来</li>
+<li>双指针<ul>
+<li>去重：判断nums[i] &#x3D;&#x3D; nums[i - 1]</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">threeSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:          </span><br><span class="line">        res = []</span><br><span class="line">        nums.sort()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i, a <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> a == nums[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            l, r = i + <span class="number">1</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> l &lt; r:</span><br><span class="line">                threeSum = a + nums[l] + nums[r]</span><br><span class="line">                <span class="keyword">if</span> threeSum &gt; <span class="number">0</span>:</span><br><span class="line">                    r -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> threeSum &lt; <span class="number">0</span>:</span><br><span class="line">                    l += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append([a, nums[l], nums[r]])</span><br><span class="line">                    l += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> nums[l] == nums[l - <span class="number">1</span>] <span class="keyword">and</span> l &lt; r:</span><br><span class="line">                        l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-18-4Sum"><a href="#Leetcode-18-4Sum" class="headerlink" title="Leetcode 18. 4Sum"></a>Leetcode 18. 4Sum</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/4sum/">https://leetcode.com/problems/4sum/</a></p>
+<ol>
+<li>好难好难</li>
+<li>随想录<ul>
+<li>四数之和，和<a target="_blank" rel="noopener" href="https://programmercarl.com/0015.%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C.html">15.三数之和 (opens new window)</a>是一个思路，都是使用双指针法, 基本解法就是在<a target="_blank" rel="noopener" href="https://programmercarl.com/0015.%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C.html">15.三数之和 (opens new window)</a>的基础上再套一层for循环。</li>
+<li>四数之和的双指针解法是两层for循环nums[k] + nums[i]为确定值，依然是循环内有left和right下标作为双指针，找出nums[k] + nums[i] + nums[left] + nums[right] &#x3D;&#x3D; target的情况，三数之和的时间复杂度是O(n^2)，四数之和的时间复杂度是O(n^3) 。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fourSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        nums.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i - <span class="number">1</span>]: <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>, n):</span><br><span class="line">                <span class="keyword">if</span> k &gt; i + <span class="number">1</span> <span class="keyword">and</span> nums[k] == nums[k-<span class="number">1</span>]: <span class="keyword">continue</span></span><br><span class="line">                p = k + <span class="number">1</span></span><br><span class="line">                q = n - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">while</span> p &lt; q:</span><br><span class="line">                    <span class="keyword">if</span> nums[i] + nums[k] + nums[p] + nums[q] &gt; target: q -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> nums[i] + nums[k] + nums[p] + nums[q] &lt; target: p += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        res.append([nums[i], nums[k], nums[p], nums[q]])</span><br><span class="line">                        <span class="keyword">while</span> p &lt; q <span class="keyword">and</span> nums[p] == nums[p + <span class="number">1</span>]: p += <span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> p &lt; q <span class="keyword">and</span> nums[q] == nums[q - <span class="number">1</span>]: q -= <span class="number">1</span></span><br><span class="line">                        p += <span class="number">1</span></span><br><span class="line">                        q -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>官方解法 1: Two Pointers</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fourSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">	</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">kSum</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">            res = []</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># If we have run out of numbers to add, return res.</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># There are k remaining values to add to the sum. The </span></span><br><span class="line">            <span class="comment"># average of these values is at least target // k.</span></span><br><span class="line">            average_value = target // k</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># We cannot obtain a sum of target if the smallest value</span></span><br><span class="line">            <span class="comment"># in nums is greater than target // k or if the largest </span></span><br><span class="line">            <span class="comment"># value in nums is smaller than target // k.</span></span><br><span class="line">            <span class="keyword">if</span> average_value &lt; nums[<span class="number">0</span>] <span class="keyword">or</span> nums[-<span class="number">1</span>] &lt; average_value:</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> k == <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> twoSum(nums, target)</span><br><span class="line">    </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> nums[i - <span class="number">1</span>] != nums[i]:</span><br><span class="line">                    <span class="keyword">for</span> subset <span class="keyword">in</span> kSum(nums[i + <span class="number">1</span>:], target - nums[i], k - <span class="number">1</span>):</span><br><span class="line">                        res.append([nums[i]] + subset)</span><br><span class="line">    </span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">            res = []</span><br><span class="line">            lo, hi = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">            <span class="keyword">while</span> (lo &lt; hi):</span><br><span class="line">                curr_sum = nums[lo] + nums[hi]</span><br><span class="line">                <span class="keyword">if</span> curr_sum &lt; target <span class="keyword">or</span> (lo &gt; <span class="number">0</span> <span class="keyword">and</span> nums[lo] == nums[lo - <span class="number">1</span>]):</span><br><span class="line">                    lo += <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> curr_sum &gt; target <span class="keyword">or</span> (hi &lt; <span class="built_in">len</span>(nums) - <span class="number">1</span> <span class="keyword">and</span> nums[hi] == nums[hi + <span class="number">1</span>]):</span><br><span class="line">                    hi -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append([nums[lo], nums[hi]])</span><br><span class="line">                    lo += <span class="number">1</span></span><br><span class="line">                    hi -= <span class="number">1</span></span><br><span class="line">                                                         </span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="keyword">return</span> kSum(nums, target, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Time Complexity: O(n^k−1)</li>
+<li>Space Complexity: O(n)</li>
+</ul>
+<ol start="4">
+<li>官方解法 2: Hash Set</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fourSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">	</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">kSum</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">            res = []</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># If we have run out of numbers to add, return res.</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># There are k remaining values to add to the sum. The </span></span><br><span class="line">            <span class="comment"># average of these values is at least target // k.</span></span><br><span class="line">            average_value = target // k</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># We cannot obtain a sum of target if the smallest value</span></span><br><span class="line">            <span class="comment"># in nums is greater than target // k or if the largest </span></span><br><span class="line">            <span class="comment"># value in nums is smaller than target // k.</span></span><br><span class="line">            <span class="keyword">if</span> average_value &lt; nums[<span class="number">0</span>] <span class="keyword">or</span> nums[-<span class="number">1</span>] &lt; average_value:</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> k == <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> twoSum(nums, target)</span><br><span class="line">    </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> nums[i - <span class="number">1</span>] != nums[i]:</span><br><span class="line">                    <span class="keyword">for</span> subset <span class="keyword">in</span> kSum(nums[i + <span class="number">1</span>:], target - nums[i], k - <span class="number">1</span>):</span><br><span class="line">                        res.append([nums[i]] + subset)</span><br><span class="line">    </span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">            res = []</span><br><span class="line">            s = <span class="built_in">set</span>()</span><br><span class="line">    </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(res) == <span class="number">0</span> <span class="keyword">or</span> res[-<span class="number">1</span>][<span class="number">1</span>] != nums[i]:</span><br><span class="line">                    <span class="keyword">if</span> target - nums[i] <span class="keyword">in</span> s:</span><br><span class="line">                        res.append([target - nums[i], nums[i]])</span><br><span class="line">                s.add(nums[i])</span><br><span class="line">    </span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="keyword">return</span> kSum(nums, target, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>学习时长2小时 Hash Table 双指针 </p>
+<p>梦碎kSum</p>
+<p>先排序 套循环 双指针</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/20/Day6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/20/Day6/" class="post-title-link" itemprop="url">代码随想录 Day6 | Hash Table | 242 349 202 1</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-20 21:48:30" itemprop="dateCreated datePublished" datetime="2022-11-20T21:48:30+00:00">2022-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-11-21 00:05:45" itemprop="dateModified" datetime="2022-11-21T00:05:45+00:00">2022-11-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="哈希表-Hash-Table"><a href="#哈希表-Hash-Table" class="headerlink" title="哈希表 Hash Table"></a>哈希表 Hash Table</h3><ul>
+<li><p>用来快速判断一个元素是否出现集合里 O(1)</p>
+</li>
+<li><p>哈希函数 Hash function：映射到哈希表上的索引</p>
+</li>
+<li><p>哈希碰撞</p>
+<ul>
+<li>拉链法：选择适当的哈希表的大小，这样既不会因为数组空值而浪费大量内存，也不会因为链表太长而在查找上浪费太多时间。</li>
+<li>线性探测法：一定要保证tableSize大于dataSize。 我们需要依靠哈希表中的空位来解决碰撞问题。</li>
+</ul>
+</li>
+<li><p>常见的三种哈希结构</p>
+<ul>
+<li>array</li>
+<li>set</li>
+<li>map</li>
+</ul>
+</li>
+<li><p>当我们遇到了要快速判断一个元素是否出现在集合里的时候，就要考虑哈希法</p>
+</li>
+<li><p>牺牲了空间换取了时间</p>
+</li>
+</ul>
+<hr>
+<h3 id="Leetcode-242-Valid-Anagram"><a href="#Leetcode-242-Valid-Anagram" class="headerlink" title="Leetcode 242. Valid Anagram"></a>Leetcode 242. Valid Anagram</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/valid-anagram/">https://leetcode.com/problems/valid-anagram/</a></p>
+<p>1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isAnagram</span>(<span class="params">self, s: <span class="built_in">str</span>, t: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(s) != <span class="built_in">len</span>(t):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        h = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            h[s[i]] = h.get(s[i],<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(t)):</span><br><span class="line">            h[t[j]] = h.get(t[j],<span class="number">0</span>) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> h[k] != <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>有限的元素用array就可以了</li>
+</ul>
+<ol start="2">
+<li>随想录：定义大小为26的数组</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isAnagram</span>(<span class="params">self, s: <span class="built_in">str</span>, t: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        record = [<span class="number">0</span>] * <span class="number">26</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="comment">#求出相对数值</span></span><br><span class="line">            record[<span class="built_in">ord</span>(s[i]) - <span class="built_in">ord</span>(<span class="string">&quot;a&quot;</span>)] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(t)):</span><br><span class="line">            record[<span class="built_in">ord</span>(t[i]) - <span class="built_in">ord</span>(<span class="string">&quot;a&quot;</span>)] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">26</span>):</span><br><span class="line">            <span class="keyword">if</span> record[i] != <span class="number">0</span>:</span><br><span class="line">                <span class="comment">#record数组如果有的元素不为零0</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-349-Intersection-of-Two-Arrays"><a href="#Leetcode-349-Intersection-of-Two-Arrays" class="headerlink" title="Leetcode 349. Intersection of Two Arrays"></a>Leetcode 349. Intersection of Two Arrays</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/intersection-of-two-arrays/">https://leetcode.com/problems/intersection-of-two-arrays/</a></p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersection</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        h = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums1)):</span><br><span class="line">            h[nums1[i]] = h.get(nums1[i],<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums2)):</span><br><span class="line">            <span class="keyword">if</span> h.get(nums2[j],<span class="number">0</span>) != <span class="number">0</span>:</span><br><span class="line">                res.append(nums2[j])</span><br><span class="line">                h[nums2[j]] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>set就可以了不需要map</li>
+<li>直接使用set不仅占用空间比数组大，而且速度要比数组慢，set把数值映射到key上都要做hash计算。</li>
+</ul>
+<ol start="2">
+<li>python有点作弊的</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersection</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">    		<span class="comment"># 两个数组先变成集合，求交集后还原为数组</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">set</span>(nums1) &amp; <span class="built_in">set</span>(nums2))    </span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-202-Happy-Number"><a href="#Leetcode-202-Happy-Number" class="headerlink" title="Leetcode 202. Happy Number"></a>Leetcode 202. Happy Number</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/happy-number/">https://leetcode.com/problems/happy-number/</a></p>
+<p>1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isHappy</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        h = &#123;&#125;</span><br><span class="line">        sumn = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> sumn != <span class="number">1</span>:</span><br><span class="line">            temp = <span class="built_in">str</span>(n)</span><br><span class="line">            sumn = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(temp)):</span><br><span class="line">                sumn += <span class="built_in">int</span>(temp[i])**<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> sumn <span class="keyword">in</span> h:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                h[sumn] = <span class="number">1</span></span><br><span class="line">                n = sumn</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>转string再转int好像不是很对</p>
+<ol start="2">
+<li>set</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isHappy</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">calculate_happy</span>(<span class="params">num</span>):</span><br><span class="line">            sum_ = <span class="number">0</span></span><br><span class="line">            <span class="comment"># 从个位开始依次取平方求和</span></span><br><span class="line">            <span class="keyword">while</span> num:</span><br><span class="line">                sum_ += (num % <span class="number">10</span>) ** <span class="number">2</span></span><br><span class="line">                num = num // <span class="number">10</span></span><br><span class="line">            <span class="keyword">return</span> sum_</span><br><span class="line">          </span><br><span class="line">        record = <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            n = calculate_happy(n)</span><br><span class="line">            <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> n <span class="keyword">in</span> record:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                record.add(n)</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-1-Two-Sum"><a href="#Leetcode-1-Two-Sum" class="headerlink" title="Leetcode 1. Two Sum"></a>Leetcode 1. Two Sum</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum/">https://leetcode.com/problems/two-sum/</a></p>
+<ol>
+<li>梦开始的地方</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> target - nums[i] <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">return</span> [i,dic.get(target - nums[i])]</span><br><span class="line">            dic[nums[i]] = i</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>map中的存储结构为 {key：数据元素，value：数组元素对应的下标}</li>
+</ul>
+<ol start="2">
+<li>差不多</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        records = <span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">for</span> index, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">if</span> target - value <span class="keyword">in</span> records:</span><br><span class="line">                <span class="keyword">return</span> [records[target - value], index]</span><br><span class="line">            records[value] = index</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>学习时长1.5小时 Hash Table </p>
+<p>有限元素 array</p>
+<p>是否出现 set</p>
+<p>出现次数 map</p>
+<p>习惯用python字典(map) 不知道换到别的语言还能不能写出来</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
