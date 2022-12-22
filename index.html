@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -145,6 +145,240 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/22/Day35/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/22/Day35/" class="post-title-link" itemprop="url">代码随想录 Day35 | Greedy Algorithm | 860 406 452</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-12-22 01:03:08 / Modified: 01:29:39" itemprop="dateCreated datePublished" datetime="2022-12-22T01:03:08+00:00">2022-12-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <hr>
+<h3 id="Leetcode-860-Lemonade-Change"><a href="#Leetcode-860-Lemonade-Change" class="headerlink" title="Leetcode 860. Lemonade Change"></a>Leetcode 860. Lemonade Change</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/lemonade-change/">https://leetcode.com/problems/lemonade-change/</a></p>
+<ol>
+<li>我也不知道为什么用了数组</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lemonadeChange</span>(<span class="params">self, bills: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        cash = [<span class="number">0</span>,<span class="number">0</span>] <span class="comment">#[$5, $10] 本来还有$20没有用删掉了</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(bills)):</span><br><span class="line">            <span class="keyword">if</span> bills[i] == <span class="number">5</span>:</span><br><span class="line">                cash[<span class="number">0</span>] +=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> bills[i] == <span class="number">10</span>:</span><br><span class="line">                <span class="keyword">if</span> cash[<span class="number">0</span>] &gt; <span class="number">0</span>:</span><br><span class="line">                    cash[<span class="number">0</span>] -= <span class="number">1</span></span><br><span class="line">                    cash[<span class="number">1</span>] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> bills[i] == <span class="number">20</span>:</span><br><span class="line">                <span class="keyword">if</span> cash[<span class="number">0</span>] &gt; <span class="number">0</span> <span class="keyword">and</span> cash[<span class="number">1</span>] &gt; <span class="number">0</span>:</span><br><span class="line">                    cash[<span class="number">0</span>] -= <span class="number">1</span></span><br><span class="line">                    cash[<span class="number">1</span>] -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> cash[<span class="number">0</span>] &gt;= <span class="number">3</span>:</span><br><span class="line">                    cash[<span class="number">0</span>] -= <span class="number">3</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<p>2. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lemonadeChange</span>(<span class="params">self, bills: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        five, ten = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> bill <span class="keyword">in</span> bills:</span><br><span class="line">            <span class="keyword">if</span> bill == <span class="number">5</span>:</span><br><span class="line">                five += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> bill == <span class="number">10</span>:</span><br><span class="line">                <span class="keyword">if</span> five &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">                five -= <span class="number">1</span></span><br><span class="line">                ten += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> ten &gt; <span class="number">0</span> <span class="keyword">and</span> five &gt; <span class="number">0</span>:</span><br><span class="line">                    ten -= <span class="number">1</span></span><br><span class="line">                    five -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> five &gt; <span class="number">2</span>:</span><br><span class="line">                    five -= <span class="number">3</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-134-Gas-Station"><a href="#Leetcode-134-Gas-Station" class="headerlink" title="Leetcode 134. Gas Station"></a>Leetcode 134. Gas Station</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/gas-station/">https://leetcode.com/problems/gas-station/</a></p>
+<ol>
+<li><p>身高从大到小排（身高相同的话则k小的站前面）</p>
+<p>按照身高排序之后，优先按身高高的people的k来插入，后序插入节点也不会影响前面已经插入的节点，最终按照k的规则完成了队列。</p>
+<p>所以在按照身高从大到小排序后：</p>
+<p><strong>局部最优：优先按身高高的people的k来插入。插入操作过后的people满足队列属性</strong></p>
+<p><strong>全局最优：最后都做完插入操作，整个队列满足题目队列属性</strong></p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reconstructQueue</span>(<span class="params">self, people: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">    	<span class="comment"># 先按照h维度的身高顺序从高到低排序。确定第一个维度</span></span><br><span class="line">        <span class="comment"># lambda返回的是一个元组：当-x[0](维度h）相同时，再根据x[1]（维度k）从小到大排序</span></span><br><span class="line">        people.sort(key=<span class="keyword">lambda</span> x: (-x[<span class="number">0</span>], x[<span class="number">1</span>]))</span><br><span class="line">        que = []</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 根据每个元素的第二个维度k，贪心算法，进行插入</span></span><br><span class="line">        <span class="comment"># people已经排序过了：同一高度时k值小的排前面。</span></span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> people:</span><br><span class="line">            que.insert(p[<span class="number">1</span>], p)</span><br><span class="line">        <span class="keyword">return</span> que</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-452-Minimum-Number-of-Arrows-to-Burst-Balloons"><a href="#Leetcode-452-Minimum-Number-of-Arrows-to-Burst-Balloons" class="headerlink" title="Leetcode 452. Minimum Number of Arrows to Burst Balloons"></a>Leetcode 452. Minimum Number of Arrows to Burst Balloons</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/">https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/</a></p>
+<ol>
+<li>排序 找重叠</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findMinArrowShots</span>(<span class="params">self, points: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(points) == <span class="number">0</span>: </span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        points.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])</span><br><span class="line">        result = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(points)):</span><br><span class="line">            <span class="keyword">if</span> points[i][<span class="number">0</span>] &gt; points[i - <span class="number">1</span>][<span class="number">1</span>]: </span><br><span class="line">                result += <span class="number">1</span>     </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                points[i][<span class="number">1</span>] = <span class="built_in">min</span>(points[i - <span class="number">1</span>][<span class="number">1</span>], points[i][<span class="number">1</span>]) </span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>贪心算法 </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/21/Day34/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/21/Day34/" class="post-title-link" itemprop="url">代码随想录 Day34 | Greedy Algorithm | 1005 134 135</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-21 16:02:50" itemprop="dateCreated datePublished" datetime="2022-12-21T16:02:50+00:00">2022-12-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-12-22 01:02:49" itemprop="dateModified" datetime="2022-12-22T01:02:49+00:00">2022-12-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Leetcode-1005-Maximize-Sum-Of-Array-After-K-Negations"><a href="#Leetcode-1005-Maximize-Sum-Of-Array-After-K-Negations" class="headerlink" title="Leetcode 1005. Maximize Sum Of Array After K Negations"></a>Leetcode 1005. Maximize Sum Of Array After K Negations</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/</a></p>
+<ol>
+<li>贪心的思路，局部最优：让绝对值大的负数变为正数，当前数值达到最大，整体最优：整个数组和达到最大。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">largestSumAfterKNegations</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums = <span class="built_in">sorted</span>(nums, key=<span class="built_in">abs</span>, reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> k &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] &lt; <span class="number">0</span>:</span><br><span class="line">                nums[i] = -nums[i]</span><br><span class="line">                k -= <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> k &gt; <span class="number">0</span>:</span><br><span class="line">            nums[-<span class="number">1</span>] *= (-<span class="number">1</span>)**k </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(nums)</span><br><span class="line">       </span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-134-Gas-Station"><a href="#Leetcode-134-Gas-Station" class="headerlink" title="Leetcode 134. Gas Station"></a>Leetcode 134. Gas Station</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/gas-station/">https://leetcode.com/problems/gas-station/</a></p>
+<ol>
+<li><p>暴力解法 超时</p>
+</li>
+<li><p>贪心算法方法一 （但没有找局部最优，而是直接从全局最优的角度上思考问题</p>
+<p>直接从全局进行贪心选择，情况如下：</p>
+<ul>
+<li>情况一：如果gas的总和小于cost总和，那么无论从哪里出发，一定是跑不了一圈的</li>
+<li>情况二：rest[i] &#x3D; gas[i]-cost[i]为一天剩下的油，i从0开始计算累加到最后一站，如果累加没有出现负数，说明从0出发，油就没有断过，那么0就是起点。</li>
+<li>情况三：如果累加的最小值是负数，汽车就要从非0节点出发，从后向前，看哪个节点能这个负数填平，能把这个负数填平的节点就是出发节点。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canCompleteCircuit</span>(<span class="params">self, gas: <span class="type">List</span>[<span class="built_in">int</span>], cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(gas)</span><br><span class="line">        cur_sum = <span class="number">0</span></span><br><span class="line">        min_sum = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            cur_sum += gas[i] - cost[i]</span><br><span class="line">            min_sum = <span class="built_in">min</span>(min_sum, cur_sum)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> cur_sum &lt; <span class="number">0</span>: <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> min_sum &gt;= <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n - <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            min_sum += gas[j] - cost[j]</span><br><span class="line">            <span class="keyword">if</span> min_sum &gt;= <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> j</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>贪心算法方法二 </p>
+<p>可以换一个思路，首先如果总油量减去总消耗大于等于零那么一定可以跑完一圈，说明 各个站点的加油站 剩油量rest[i]相加一定是大于等于零的。</p>
+<p>每个加油站的剩余量rest[i]为gas[i] - cost[i]。</p>
+<p>i从0开始累加rest[i]，和记为curSum，一旦curSum小于零，说明[0, i]区间都不能作为起始位置，起始位置从i+1算起，再从0计算curSum。</p>
+<p>如果出现更大的负数，就是更新j，那么起始位置又变成新的j+1了。</p>
+<p>而且j之前出现了多少负数，j后面就会出现多少正数，因为耗油总和是大于零的（前提我们已经确定了一定可以跑完全程）。</p>
+<p><strong>那么局部最优：当前累加rest[j]的和curSum一旦小于0，起始位置至少要是j+1，因为从j开始一定不行。全局最优：找到可以跑一圈的起始位置</strong>。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canCompleteCircuit</span>(<span class="params">self, gas: <span class="type">List</span>[<span class="built_in">int</span>], cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        start = <span class="number">0</span></span><br><span class="line">        curSum = <span class="number">0</span></span><br><span class="line">        totalSum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(gas)):</span><br><span class="line">            curSum += gas[i] - cost[i]</span><br><span class="line">            totalSum += gas[i] - cost[i]</span><br><span class="line">            <span class="keyword">if</span> curSum &lt; <span class="number">0</span>:</span><br><span class="line">                curSum = <span class="number">0</span></span><br><span class="line">                start = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> totalSum &lt; <span class="number">0</span>: <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> start</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-135-Candy"><a href="#Leetcode-135-Candy" class="headerlink" title="Leetcode 135. Candy"></a>Leetcode 135. Candy</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/candy/">https://leetcode.com/problems/candy/</a></p>
+<ol>
+<li>两次贪心：<ul>
+<li>一次是从左到右遍历，只比较右边孩子评分比左边大的情况。</li>
+<li>一次是从右到左遍历，只比较左边孩子评分比右边大的情况。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">candy</span>(<span class="params">self, ratings: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        candyVec = [<span class="number">1</span>] * <span class="built_in">len</span>(ratings)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(ratings)):</span><br><span class="line">            <span class="keyword">if</span> ratings[i] &gt; ratings[i - <span class="number">1</span>]:</span><br><span class="line">                candyVec[i] = candyVec[i - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ratings) - <span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> ratings[j] &gt; ratings[j + <span class="number">1</span>]:</span><br><span class="line">                candyVec[j] = <span class="built_in">max</span>(candyVec[j], candyVec[j + <span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(candyVec)</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>贪心算法 </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1048,242 +1282,6 @@
 
 <hr>
 <h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>回溯算法 剪枝操作 还需多多理解</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/08/Day23/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/08/Day23/" class="post-title-link" itemprop="url">代码随想录 Day23 | Binary Tree | 669 108 538</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-12-08 17:18:11 / Modified: 17:41:19" itemprop="dateCreated datePublished" datetime="2022-12-08T17:18:11+00:00">2022-12-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Leetcode-669-Trim-a-Binary-Search-Tree"><a href="#Leetcode-669-Trim-a-Binary-Search-Tree" class="headerlink" title="Leetcode 669. Trim a Binary Search Tree"></a>Leetcode 669. Trim a Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/trim-a-binary-search-tree/">https://leetcode.com/problems/trim-a-binary-search-tree/</a></p>
-<ol>
-<li>修修修</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">trimBST</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode], low: <span class="built_in">int</span>, high: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> root.val &lt; low:</span><br><span class="line">            <span class="keyword">return</span> self.trimBST(root.right, low, high)</span><br><span class="line">        <span class="keyword">elif</span> root.val &gt; high:</span><br><span class="line">            <span class="keyword">return</span> self.trimBST(root.left, low, high)</span><br><span class="line">        <span class="keyword">else</span>: </span><br><span class="line">            root.left = self.trimBST(root.left, low, high)</span><br><span class="line">            root.right = self.trimBST(root.right, low, high)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">                    </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-108-Convert-Sorted-Array-to-Binary-Search-Tree"><a href="#Leetcode-108-Convert-Sorted-Array-to-Binary-Search-Tree" class="headerlink" title="Leetcode 108. Convert Sorted Array to Binary Search Tree"></a>Leetcode 108. Convert Sorted Array to Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/">https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/</a></p>
-<ol>
-<li>高度平衡二叉搜索树</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedArrayToBST</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">          </span><br><span class="line">        mid = <span class="built_in">len</span>(nums)//<span class="number">2</span></span><br><span class="line">        root = TreeNode(nums[mid])</span><br><span class="line">        root.left = self.sortedArrayToBST(nums[:mid])</span><br><span class="line">        root.right = self.sortedArrayToBST(nums[mid+<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>迭代（不想写了先放一下</p>
-<p>迭代法可以通过三个队列来模拟，一个队列放遍历的节点，一个队列放左区间下标，一个队列放右区间下标。</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">            </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-538-Convert-BST-to-Greater-Tree"><a href="#Leetcode-538-Convert-BST-to-Greater-Tree" class="headerlink" title="Leetcode 538. Convert BST to Greater Tree"></a>Leetcode 538. Convert BST to Greater Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-bst-to-greater-tree/">https://leetcode.com/problems/convert-bst-to-greater-tree/</a></p>
-<ol>
-<li><p>the original key plus sum of all keys greater than the original key in BST </p>
-<p>最大值在最右，所以从右向左累加</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        res = <span class="number">0</span> </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">tranverse</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">               <span class="keyword">return</span></span><br><span class="line">              </span><br><span class="line">            tranverse(root.right)</span><br><span class="line">            root.val += res</span><br><span class="line">            res = root.val</span><br><span class="line">            tranverse(root.left)</span><br><span class="line">            </span><br><span class="line">        tranverse(root)</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>修建二叉搜索树 有序数组构造平衡二叉搜索树 累加树</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/07/Day22/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/07/Day22/" class="post-title-link" itemprop="url">代码随想录 Day22 | Binary Tree | 530 501 236</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-12-07 12:34:20 / Modified: 15:31:59" itemprop="dateCreated datePublished" datetime="2022-12-07T12:34:20+00:00">2022-12-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Leetcode-235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree"><a href="#Leetcode-235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree" class="headerlink" title="Leetcode 235. Lowest Common Ancestor of a Binary Search Tree"></a>Leetcode 235. Lowest Common Ancestor of a Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/">https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/</a></p>
-<ol>
-<li><p>如果p&#x2F;q是root，return root</p>
-<p>如果pq在root两边，return root</p>
-<p>如果pq都小于root，左边搜索</p>
-<p>如果pq都大于root，右边搜索</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> p == root <span class="keyword">or</span> q == root:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span>  (p.val &lt; root.val <span class="keyword">and</span> q.val &gt; root.val) <span class="keyword">or</span> (q.val &lt; root.val <span class="keyword">and</span> p.val &gt; root.val):</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span> p.val &lt; root.val <span class="keyword">and</span> q.val &lt; root.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        <span class="keyword">if</span> p.val &gt; root.val <span class="keyword">and</span> q.val &gt; root.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">          </span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>简单点</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> root.val &gt; p.val <span class="keyword">and</span> root.val &gt; q.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        <span class="keyword">if</span> root.val &lt; p.val <span class="keyword">and</span> root.val &lt; q.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>迭代法</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">if</span> root.val &gt; p.val <span class="keyword">and</span> root.val &gt; q.val:</span><br><span class="line">                root = root.left</span><br><span class="line">            <span class="keyword">elif</span> root.val &lt; p.val <span class="keyword">and</span> root.val &lt; q.val:</span><br><span class="line">                root = root.right</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> root</span><br><span class="line">              </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-701-Insert-into-a-Binary-Search-Tree"><a href="#Leetcode-701-Insert-into-a-Binary-Search-Tree" class="headerlink" title="Leetcode 701. Insert into a Binary Search Tree"></a>Leetcode 701. Insert into a Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/insert-into-a-binary-search-tree/">https://leetcode.com/problems/insert-into-a-binary-search-tree/</a></p>
-<ol>
-<li>如果比root小 往左边插 如果比root大往右边插</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insertIntoBST</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode], val: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> TreeNode(val)</span><br><span class="line">          </span><br><span class="line">        <span class="keyword">if</span> val &lt; root.val:</span><br><span class="line">            <span class="keyword">if</span> root.left == <span class="literal">None</span>:</span><br><span class="line">                root.left = TreeNode(val)    </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.insertIntoBST(root.left, val)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> val &gt; root.val:</span><br><span class="line">            <span class="keyword">if</span> root.right == <span class="literal">None</span>:</span><br><span class="line">                root.right = TreeNode(val)              </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.insertIntoBST(root.right, val)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
-
-<p>按照二叉搜索树的规则去遍历，遇到空节点就插入节点</p>
-<ol start="2">
-<li>迭代</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insertIntoBST</span>(<span class="params">self, root: TreeNode, val: <span class="built_in">int</span></span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">            <span class="keyword">return</span> TreeNode(val)</span><br><span class="line">        parent = <span class="literal">None</span> <span class="comment"># 此步可以省略</span></span><br><span class="line">        cur = root</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 用while循环不断地找新节点的parent</span></span><br><span class="line">        <span class="keyword">while</span> cur: </span><br><span class="line">            parent = cur  <span class="comment"># 首先保存当前非空节点作为下一次迭代的父节点</span></span><br><span class="line">            <span class="keyword">if</span> cur.val &lt; val: </span><br><span class="line">                cur = cur.right</span><br><span class="line">            <span class="keyword">elif</span> cur.val &gt; val: </span><br><span class="line">                cur = cur.left</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 运行到这意味着已经跳出上面的while循环, </span></span><br><span class="line">        <span class="comment"># 同时意味着新节点的parent已经被找到.</span></span><br><span class="line">        <span class="comment"># parent已被找到, 新节点已经ready. 把两个节点黏在一起就好了. </span></span><br><span class="line">        <span class="keyword">if</span> parent.val &gt; val: </span><br><span class="line">            parent.left = TreeNode(val)</span><br><span class="line">        <span class="keyword">else</span>: </span><br><span class="line">            parent.right = TreeNode(val)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-450-Delete-Node-in-a-BST"><a href="#Leetcode-450-Delete-Node-in-a-BST" class="headerlink" title="Leetcode 450. Delete Node in a BST"></a>Leetcode 450. Delete Node in a BST</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/delete-node-in-a-bst/">https://leetcode.com/problems/delete-node-in-a-bst/</a></p>
-<ol>
-<li><p>好难 </p>
-</li>
-<li><p>五种情况：</p>
-<ul>
-<li>第一种情况：没找到删除的节点，遍历到空节点直接返回了</li>
-<li>找到删除的节点<ul>
-<li>第二种情况：左右孩子都为空，直接删除节点， 返回NULL为根节点</li>
-<li>第三种情况：删除节点的左孩子为空，右孩子不为空，删除节点，右孩子补位，返回右孩子为根节点</li>
-<li>第四种情况：删除节点的右孩子为空，左孩子不为空，删除节点，左孩子补位，返回左孩子为根节点</li>
-<li>第五种情况：左右孩子节点都不为空，则将删除节点的左子树头结点（左孩子）放到删除节点的右子树的最左面节点的左孩子上，返回删除节点右孩子为新的根节点。（就是这个情况没想出来怎么处理</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteNode</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode], key: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[TreeNode]:        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root : <span class="keyword">return</span>  <span class="literal">None</span> <span class="comment"># 节点为空，返回</span></span><br><span class="line">        <span class="keyword">if</span> root.val &lt; key :</span><br><span class="line">            root.right = self.deleteNode(root.right, key)</span><br><span class="line">        <span class="keyword">elif</span> root.val &gt; key :</span><br><span class="line">            root.left = self.deleteNode(root.left, key)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 当前节点的左子树为空，返回当前的右子树</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root.left : <span class="keyword">return</span> root.right</span><br><span class="line">            <span class="comment"># 当前节点的右子树为空，返回当前的左子树</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root.right: <span class="keyword">return</span> root.left</span><br><span class="line">            <span class="comment"># 左右子树都不为空，找到右孩子的最左节点 记为p</span></span><br><span class="line">            node = root.right</span><br><span class="line">            <span class="keyword">while</span> node.left :</span><br><span class="line">                node = node.left</span><br><span class="line">            <span class="comment"># 将当前节点的左子树挂在p的左孩子上</span></span><br><span class="line">            node.left = root.left</span><br><span class="line">            <span class="comment"># 当前节点的右子树替换掉当前节点，完成当前节点的删除</span></span><br><span class="line">            root = root.right</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>二叉搜索树的最近公共祖先 二叉搜索树插入&#x2F;删除</p>
 
       
     </div>
