@@ -27,7 +27,7 @@
 <meta property="og:description" content="Leetcode 738. Monotone Increasing Digitshttps:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;monotone-increasing-digits&#x2F;  局部最优：遇到strNum[i - 1] &gt; strNum[i]的情况，让strNum[i - 1]–，然后strNum[i]给为9，可以保证这两位变成最大单调递增整数。 全局最优：得到小于等于N">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-23T00:55:51.000Z">
-<meta property="article:modified_time" content="2022-12-23T02:05:30.685Z">
+<meta property="article:modified_time" content="2022-12-23T02:22:05.593Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -107,7 +107,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-738-Monotone-Increasing-Digits"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 738. Monotone Increasing Digits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-134-Gas-Station"><span class="nav-number">2.</span> <span class="nav-text">Leetcode 134. Gas Station</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee"><span class="nav-number">3.</span> <span class="nav-text">Leetcode 714. Best Time to Buy and Sell Stock with Transaction Fee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E6%94%B6%E8%8E%B7"><span class="nav-number">4.</span> <span class="nav-text">今日收获</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-738-Monotone-Increasing-Digits"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 738. Monotone Increasing Digits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee"><span class="nav-number">2.</span> <span class="nav-text">Leetcode 714. Best Time to Buy and Sell Stock with Transaction Fee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-968-Binary-Tree-Cameras"><span class="nav-number">3.</span> <span class="nav-text">Leetcode 968. Binary Tree Cameras</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E6%94%B6%E8%8E%B7"><span class="nav-number">4.</span> <span class="nav-text">今日收获</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,7 +190,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-23 00:55:51 / Modified: 02:05:30" itemprop="dateCreated datePublished" datetime="2022-12-23T00:55:51+00:00">2022-12-23</time>
+      <time title="Created: 2022-12-23 00:55:51 / Modified: 02:22:05" itemprop="dateCreated datePublished" datetime="2022-12-23T00:55:51+00:00">2022-12-23</time>
     </span>
 
   
@@ -215,20 +215,6 @@
 
 <p>注意：100</p>
 <hr>
-<h3 id="Leetcode-134-Gas-Station"><a href="#Leetcode-134-Gas-Station" class="headerlink" title="Leetcode 134. Gas Station"></a>Leetcode 134. Gas Station</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/gas-station/">https://leetcode.com/problems/gas-station/</a></p>
-<ol>
-<li><p>身高从大到小排（身高相同的话则k小的站前面）</p>
-<p>按照身高排序之后，优先按身高高的people的k来插入，后序插入节点也不会影响前面已经插入的节点，最终按照k的规则完成了队列。</p>
-<p>所以在按照身高从大到小排序后：</p>
-<p><strong>局部最优：优先按身高高的people的k来插入。插入操作过后的people满足队列属性</strong></p>
-<p><strong>全局最优：最后都做完插入操作，整个队列满足题目队列属性</strong></p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reconstructQueue</span>(<span class="params">self, people: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">    	<span class="comment"># 先按照h维度的身高顺序从高到低排序。确定第一个维度</span></span><br><span class="line">        <span class="comment"># lambda返回的是一个元组：当-x[0](维度h）相同时，再根据x[1]（维度k）从小到大排序</span></span><br><span class="line">        people.sort(key=<span class="keyword">lambda</span> x: (-x[<span class="number">0</span>], x[<span class="number">1</span>]))</span><br><span class="line">        que = []</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 根据每个元素的第二个维度k，贪心算法，进行插入</span></span><br><span class="line">        <span class="comment"># people已经排序过了：同一高度时k值小的排前面。</span></span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> people:</span><br><span class="line">            que.insert(p[<span class="number">1</span>], p)</span><br><span class="line">        <span class="keyword">return</span> que</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
 <h3 id="Leetcode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee"><a href="#Leetcode-714-Best-Time-to-Buy-and-Sell-Stock-with-Transaction-Fee" class="headerlink" title="Leetcode 714. Best Time to Buy and Sell Stock with Transaction Fee"></a>Leetcode 714. Best Time to Buy and Sell Stock with Transaction Fee</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/</a></p>
 <ol>
 <li><p>本题有了手续费，就要关系什么时候买卖了，因为计算所获得利润，需要考虑买卖利润可能不足以手续费的情况。</p>
@@ -249,6 +235,49 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices: <span class="type">List</span>[<span class="built_in">int</span>], fee: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        </span><br><span class="line">        minPrice = prices[<span class="number">0</span>]</span><br><span class="line">        result = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(prices)):</span><br><span class="line">            <span class="keyword">if</span> prices[i] &lt; minPrice: <span class="comment"># 此时有更低的价格，可以买入</span></span><br><span class="line">                minPrice = prices[i]</span><br><span class="line">            <span class="comment"># 计算利润，可能有多次计算利润，最后一次计算利润才是真正意义的卖出</span></span><br><span class="line">            <span class="keyword">if</span> prices[i] &gt; (minPrice + fee): <span class="comment"># 此时有利润，同时假买入高价的股票，看看是否继续盈利</span></span><br><span class="line">                result += prices[i] - (minPrice + fee)</span><br><span class="line">                minPrice = prices[i] - fee</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
 
 <p>从代码中可以看出对情况一的操作，因为如果还在收获利润的区间里，表示并不是真正的卖出，而计算利润每次都要减去手续费，<strong>所以要让minPrice &#x3D; prices[i] - fee;，这样在明天收获利润的时候，才不会多减一次手续费</strong></p>
+<hr>
+<h3 id="Leetcode-968-Binary-Tree-Cameras"><a href="#Leetcode-968-Binary-Tree-Cameras" class="headerlink" title="Leetcode 968. Binary Tree Cameras"></a>Leetcode 968. Binary Tree Cameras</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-tree-cameras/">https://leetcode.com/problems/binary-tree-cameras/</a></p>
+<ol>
+<li><p>局部最优：让叶子节点的父节点安摄像头，所用摄像头最少，整体最优：全部摄像头数量所用最少</p>
+<p>思路就是从低到上，先给叶子节点父节点放个摄像头，然后隔两个节点放一个摄像头，直至到二叉树头结点。</p>
+<ul>
+<li><p>二叉树的遍历</p>
+<p>可以使用后序遍历也就是左右中的顺序，这样就可以在回溯的过程中从下到上进行推导了</p>
+</li>
+<li><p>如何隔两个节点放一个摄像头</p>
+<p>每个节点有如下三种状态 分别有三个数字来表示：</p>
+<ul>
+<li>0：该节点无覆盖</li>
+<li>1：本节点有摄像头</li>
+<li>2：本节点有覆盖</li>
+</ul>
+</li>
+<li><p>递归的终止条件：遇到空节点，此时应该返回 2（有覆盖），原因空节点的状态只能是有覆盖，这样就可以在叶子节点的父节点放摄像头了</p>
+</li>
+<li><p>单层逻辑处理</p>
+<ul>
+<li><p>情况1：左右节点都有覆盖</p>
+<p>此时中间节点应该就是无覆盖的状态了。</p>
+</li>
+<li><p>情况2：左右节点至少有一个无覆盖的情况</p>
+<p>则中间节点（父节点）应该放摄像头：</p>
+</li>
+<li><p>情况3：左右节点至少有一个有摄像头</p>
+<p>那么其父节点就应该是2（覆盖的状态）</p>
+</li>
+<li><p>情况4：头结点没有覆盖</p>
+<p>以上都处理完了，递归结束之后，可能头结点 还有一个无覆盖的情况</p>
+<p>所以递归结束之后，还要判断根节点，如果没有覆盖，result++</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minCameraCover</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># Greedy Algo:</span></span><br><span class="line">        <span class="comment"># 从下往上安装摄像头：跳过leaves这样安装数量最少，局部最优 -&gt; 全局最优</span></span><br><span class="line">        <span class="comment"># 先给leaves的父节点安装，然后每隔两层节点安装一个摄像头，直到Head</span></span><br><span class="line">        <span class="comment"># 0: 该节点未覆盖</span></span><br><span class="line">        <span class="comment"># 1: 该节点有摄像头</span></span><br><span class="line">        <span class="comment"># 2: 该节点有覆盖</span></span><br><span class="line">        </span><br><span class="line">        result = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 从下往上遍历：后序（左右中）</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traversal</span>(<span class="params">curr: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">nonlocal</span> result</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> curr: <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">            left = traversal(curr.left)</span><br><span class="line">            right = traversal(curr.right)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Case 1:</span></span><br><span class="line">            <span class="comment"># 左右节点都有覆盖</span></span><br><span class="line">            <span class="keyword">if</span> left == <span class="number">2</span> <span class="keyword">and</span> right == <span class="number">2</span>: </span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># Case 2:</span></span><br><span class="line">                <span class="comment"># left == 0 &amp;&amp; right == 0 左右节点无覆盖</span></span><br><span class="line">                <span class="comment"># left == 1 &amp;&amp; right == 0 左节点有摄像头，右节点无覆盖</span></span><br><span class="line">                <span class="comment"># left == 0 &amp;&amp; right == 1 左节点有无覆盖，右节点摄像头</span></span><br><span class="line">                <span class="comment"># left == 0 &amp;&amp; right == 2 左节点无覆盖，右节点覆盖</span></span><br><span class="line">                <span class="comment"># left == 2 &amp;&amp; right == 0 左节点覆盖，右节点无覆盖</span></span><br><span class="line">            <span class="keyword">elif</span> left == <span class="number">0</span> <span class="keyword">or</span> right == <span class="number">0</span>: </span><br><span class="line">                result += <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># Case 3:</span></span><br><span class="line">                <span class="comment"># left == 1 &amp;&amp; right == 2 左节点有摄像头，右节点有覆盖</span></span><br><span class="line">                <span class="comment"># left == 2 &amp;&amp; right == 1 左节点有覆盖，右节点有摄像头</span></span><br><span class="line">                <span class="comment"># left == 1 &amp;&amp; right == 1 左右节点都有摄像头</span></span><br><span class="line">            <span class="keyword">elif</span> left == <span class="number">1</span> <span class="keyword">or</span> right == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 其他情况前段代码均已覆盖</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> traversal(root) == <span class="number">0</span>:</span><br><span class="line">            result += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+
+
 <hr>
 <h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>贪心算法 </p>
 
