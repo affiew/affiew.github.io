@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -145,6 +145,242 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/09/Day25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/09/Day25/" class="post-title-link" itemprop="url">代码随想录 Day25 | Backtracking | 216 17</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-12-09 19:25:57 / Modified: 20:14:57" itemprop="dateCreated datePublished" datetime="2022-12-09T19:25:57+00:00">2022-12-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Leetcode-216-Combination-Sum-III"><a href="#Leetcode-216-Combination-Sum-III" class="headerlink" title="Leetcode 216. Combination Sum III"></a>Leetcode 216. Combination Sum III</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/combination-sum-iii/">https://leetcode.com/problems/combination-sum-iii/</a></p>
+<ol>
+<li><ul>
+<li><p>参数：</p>
+<ul>
+<li>targetSum（int）目标和，也就是题目中的n。</li>
+<li>k（int）就是题目中要求k个数的集合。</li>
+<li>sum（int）为已经收集的元素的总和，也就是path里元素的总和。</li>
+<li>startIndex（int）为下一层for循环搜索的起始位置。</li>
+</ul>
+</li>
+<li><p>终止条件：</p>
+<p>如果path.size() 和 k相等了，就终止。</p>
+<p>如果此时path里收集到的元素和（sum） 和targetSum（题目描述的n）相同了，就用result收集当前的结果。</p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum3</span>(<span class="params">self, k: <span class="built_in">int</span>, n: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res = []</span><br><span class="line">        path = []</span><br><span class="line">        cur = <span class="number">0</span></span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">k: <span class="built_in">int</span>, n: <span class="built_in">int</span>, start_index: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path, cur</span><br><span class="line">            <span class="keyword">if</span> cur &gt; n: </span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) == k:           </span><br><span class="line">                <span class="keyword">if</span> cur == n:                    </span><br><span class="line">                    res.append(path[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start_index, <span class="number">10</span> - (k - <span class="built_in">len</span>(path)) + <span class="number">1</span>):</span><br><span class="line">                path.append(i)</span><br><span class="line">                cur += i</span><br><span class="line">                backtracking(k, n, i + <span class="number">1</span>)</span><br><span class="line">                path.pop()</span><br><span class="line">                cur -= i</span><br><span class="line">                    </span><br><span class="line">        backtracking(k, n, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-17-Letter-Combinations-of-a-Phone-Number"><a href="#Leetcode-17-Letter-Combinations-of-a-Phone-Number" class="headerlink" title="Leetcode 17. Letter Combinations of a Phone Number"></a>Leetcode 17. Letter Combinations of a Phone Number</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/">https://leetcode.com/problems/letter-combinations-of-a-phone-number/</a></p>
+<p>1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">letterCombinations</span>(<span class="params">self, digits: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(digits) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        dic = &#123;</span><br><span class="line">            <span class="string">&#x27;2&#x27;</span>: <span class="string">&#x27;abc&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;3&#x27;</span>: <span class="string">&#x27;def&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;4&#x27;</span>: <span class="string">&#x27;ghi&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;5&#x27;</span>: <span class="string">&#x27;jkl&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;6&#x27;</span>: <span class="string">&#x27;mno&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;7&#x27;</span>: <span class="string">&#x27;pqrs&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;8&#x27;</span>: <span class="string">&#x27;tuv&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;9&#x27;</span>: <span class="string">&#x27;wxyz&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">        res = []</span><br><span class="line">        path = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">digits:<span class="built_in">str</span>, start_index:<span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path, dic</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) == <span class="built_in">len</span>(digits):</span><br><span class="line">                res.append(path[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            letters = dic[digits[start_index]]</span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> letters:</span><br><span class="line">                path += l</span><br><span class="line">                backtracking(digits, start_index + <span class="number">1</span>)</span><br><span class="line">                path = path[:-<span class="number">1</span>] </span><br><span class="line">            </span><br><span class="line">        backtracking(digits, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">letterCombinations</span>(<span class="params">self, digits: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(digits) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        dic = [<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>,<span class="string">&#x27;jkl&#x27;</span>,<span class="string">&#x27;mno&#x27;</span>, <span class="string">&#x27;pqrs&#x27;</span>, <span class="string">&#x27;tuv&#x27;</span>,<span class="string">&#x27;wxyz&#x27;</span>]</span><br><span class="line">        res = []</span><br><span class="line">        path = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">digits:<span class="built_in">str</span>, start_index:<span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path, dic</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) == <span class="built_in">len</span>(digits):</span><br><span class="line">                res.append(path[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            letters = dic[<span class="built_in">int</span>(digits[start_index])]</span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> letters:</span><br><span class="line">                path += l</span><br><span class="line">                backtracking(digits, start_index + <span class="number">1</span>)</span><br><span class="line">                path = path[:-<span class="number">1</span>] </span><br><span class="line">            </span><br><span class="line">        backtracking(digits, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>回溯算法 还需多多理解</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/08/Day24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/08/Day24/" class="post-title-link" itemprop="url">代码随想录 Day24 | Backtracking | 理论 77</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-12-08 17:40:42 / Modified: 18:57:58" itemprop="dateCreated datePublished" datetime="2022-12-08T17:40:42+00:00">2022-12-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h3><p><img src="https://img-blog.csdnimg.cn/20210219192050666.png"></p>
+<ol>
+<li><p><strong>回溯的本质是穷举，穷举所有可能，然后选出我们想要的答案</strong>，如果想让回溯法高效一些，可以加一些剪枝的操作，但也改不了回溯法就是穷举的本质。</p>
+</li>
+<li><p>回溯法，一般可以解决如下几种问题：</p>
+<ul>
+<li>组合问题：N个数里面按一定规则找出k个数的集合</li>
+<li>切割问题：一个字符串按一定规则有几种切割方式</li>
+<li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
+<li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
+<li>棋盘问题：N皇后，解数独等等</li>
+</ul>
+</li>
+<li><p><strong>回溯法解决的问题都可以抽象为树形结构。</strong></p>
+<p>因为回溯法解决的都是在集合中递归查找子集，<strong>集合的大小就构成了树的宽度，递归的深度，都构成的树的深度</strong>。</p>
+<p>递归就要有终止条件，所以必然是一棵高度有限的树（N叉树）。</p>
+</li>
+<li><p>回溯算法模板</p>
+<ul>
+<li><p>回溯函数模板返回值以及参数：</p>
+<p>回溯算法中函数返回值一般为void，因为回溯算法需要的参数不像二叉树递归的时候那么容易一次性确定下来，所以一般是先写逻辑，然后需要什么参数，就填什么参数。</p>
+</li>
+<li><p>回溯函数终止条件：</p>
+<p>一般来说搜到叶子节点了，也就找到了满足条件的一条答案，把这个答案存放起来，并结束本层递归。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (终止条件) &#123;</span><br><span class="line">    存放结果;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>回溯搜索的遍历过程：</p>
+<p>回溯法一般是在集合中递归搜索，集合的大小构成了树的宽度，递归的深度构成的树的深度。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210130173631174.png"></p>
+<p>伪代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;</span><br><span class="line">    处理节点;</span><br><span class="line">    backtracking(路径，选择列表); // 递归</span><br><span class="line">    回溯，撤销处理结果</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>for循环就是遍历集合区间，可以理解一个节点有多少个孩子，这个for循环就执行多少次。</p>
+<p>backtracking这里自己调用自己，实现递归。</p>
+<p><strong>for循环可以理解是横向遍历，backtracking（递归）就是纵向遍历</strong>，这样就把这棵树全遍历完了，一般来说，搜索叶子节点就是找的其中一个结果了。</p>
+</li>
+</ul>
+<p>回溯算法模板框架如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void backtracking(参数) &#123;</span><br><span class="line">    if (终止条件) &#123;</span><br><span class="line">        存放结果;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;</span><br><span class="line">        处理节点;</span><br><span class="line">        backtracking(路径，选择列表); // 递归</span><br><span class="line">        回溯，撤销处理结果</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="Leetcode-77-Combinations"><a href="#Leetcode-77-Combinations" class="headerlink" title="Leetcode 77. Combinations"></a>Leetcode 77. Combinations</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/">https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/</a></p>
+<p>1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combine</span>(<span class="params">self, n: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res = [] <span class="comment"># 存放符合条件结果的集合</span></span><br><span class="line">        path = [] <span class="comment"># 用来存放符合条件结果</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">n, k, StartIndex</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) == k:</span><br><span class="line">                res.append(path[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(StartIndex, n + <span class="number">1</span>):</span><br><span class="line">                path.append(i) <span class="comment"># 处理节点 </span></span><br><span class="line">                backtrack(n, k, i+<span class="number">1</span>) <span class="comment"># 递归</span></span><br><span class="line">                path.pop() <span class="comment"># 回溯，撤销处理的节点</span></span><br><span class="line">                </span><br><span class="line">        backtrack(n, k, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>优化 剪枝</p>
+<ul>
+<li>已经选择的元素个数：path.size();</li>
+<li>还需要的元素个数为: k - path.size();</li>
+<li>在集合n中至多要从该起始位置 : n - (k - path.size()) + 1，开始遍历</li>
+</ul>
+<p>为什么有个+1呢，因为包括起始位置，我们要是一个左闭的集合。</p>
+<p>举个例子，n &#x3D; 4，k &#x3D; 3， 目前已经选取的元素为0（path.size为0），n - (k - 0) + 1 即 4 - ( 3 - 0) + 1 &#x3D; 2。从2开始搜索都是合理的，可以是组合[2, 3, 4]。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combine</span>(<span class="params">self, n: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res=[]  <span class="comment">#存放符合条件结果的集合</span></span><br><span class="line">        path=[]  <span class="comment">#用来存放符合条件结果</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">n,k,startIndex</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) == k:</span><br><span class="line">                res.append(path[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(startIndex,n-(k-<span class="built_in">len</span>(path))+<span class="number">2</span>):  <span class="comment">#优化的地方</span></span><br><span class="line">                path.append(i)  <span class="comment">#处理节点</span></span><br><span class="line">                backtrack(n,k,i+<span class="number">1</span>)  <span class="comment">#递归</span></span><br><span class="line">                path.pop()  <span class="comment">#回溯，撤销处理的节点</span></span><br><span class="line">                </span><br><span class="line">        backtrack(n,k,<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>回溯算法 剪枝操作 还需多多理解</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1181,312 +1417,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/29/Day14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/29/Day14/" class="post-title-link" itemprop="url">代码随想录 Day14 | Binary Tree | 前中后序 递归遍历 迭代遍历</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-11-29 13:41:27 / Modified: 14:29:19" itemprop="dateCreated datePublished" datetime="2022-11-29T13:41:27+00:00">2022-11-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h3><ol>
-<li><p>二叉树的种类</p>
-<ul>
-<li>满二叉树：如果一棵二叉树只有度为0的结点和度为2的结点，并且度为0的结点在同一层上，则这棵二叉树为满二叉树。</li>
-<li>完全二叉树：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2^(h-1)  个节点。</li>
-<li>二叉搜索树：<ul>
-<li>若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；</li>
-<li>若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；</li>
-<li>它的左、右子树也分别为二叉排序树</li>
-</ul>
-</li>
-<li>平衡二叉搜索树：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。</li>
-</ul>
-</li>
-<li><p>二叉树的存储方式</p>
-<p>二叉树可以链式存储，也可以顺序存储。</p>
-<p>链式存储方式用指针， 顺序存储的方式是用数组。</p>
-</li>
-<li><p>二叉树的遍历方式</p>
-<ul>
-<li>深度优先遍历<ul>
-<li>前序遍历（递归法，迭代法）：中左右</li>
-<li>中序遍历（递归法，迭代法）：左中右</li>
-<li>后序遍历（递归法，迭代法）：左右中</li>
-</ul>
-</li>
-<li>广度优先遍历<ul>
-<li>层次遍历（迭代法）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="二叉树的递归遍历"><a href="#二叉树的递归遍历" class="headerlink" title="二叉树的递归遍历"></a>二叉树的递归遍历</h3><ul>
-<li><p>递归算法的三个要素</p>
-<ol>
-<li><strong>确定递归函数的参数和返回值：</strong> 确定哪些参数是递归的过程中需要处理的，那么就在递归函数里加上这个参数， 并且还要明确每次递归的返回值是什么进而确定递归函数的返回类型。</li>
-<li><strong>确定终止条件：</strong> 写完了递归算法, 运行的时候，经常会遇到栈溢出的错误，就是没写终止条件或者终止条件写的不对，操作系统也是用一个栈的结构来保存每一层递归的信息，如果递归没有终止，操作系统的内存栈必然就会溢出。</li>
-<li><strong>确定单层递归的逻辑：</strong> 确定每一层递归需要处理的信息。在这里也就会重复调用自己来实现递归的过程。</li>
-</ol>
-</li>
-<li><p>前序遍历（递归法）</p>
-<p>Leetcode 144. Binary Tree Preorder Traversal: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-tree-preorder-traversal/submissions/851756448/">https://leetcode.com/problems/binary-tree-preorder-traversal/submissions/851756448/</a></p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traversal</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            res.append(root.val) </span><br><span class="line">            traversal(root.left)    </span><br><span class="line">            traversal(root.right)  </span><br><span class="line">        traversal(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>中序遍历（递归法）</p>
-<p>Leetcode 94. Binary Tree Inorder Traversal: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-tree-inorder-traversal/">https://leetcode.com/problems/binary-tree-inorder-traversal/</a></p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traversal</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            traversal(root.left)   </span><br><span class="line">            res.append(root.val)  </span><br><span class="line">            traversal(root.right)  </span><br><span class="line">            </span><br><span class="line">        traversal(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><p>后序遍历（递归法）</p>
-<p>Leetcode 145. Binary Tree Postorder Traversal: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-tree-postorder-traversal/">https://leetcode.com/problems/binary-tree-postorder-traversal/</a></p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traversal</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            traversal(root.left)    </span><br><span class="line">            traversal(root.right)  </span><br><span class="line">            res.append(root.val) </span><br><span class="line">        traversal(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="二叉树的迭代遍历"><a href="#二叉树的迭代遍历" class="headerlink" title="二叉树的迭代遍历"></a>二叉树的迭代遍历</h3><ul>
-<li><p>前序遍历（迭代法）</p>
-<p>前序遍历是中左右，每次先处理的是中间节点，那么先将根节点放入栈中，然后将右孩子加入栈，再加入左孩子。这样出栈的时候才是中左右的顺序。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="comment"># 根结点为空则返回空列表</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        stack = [root]</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            <span class="comment"># 中结点先处理</span></span><br><span class="line">            result.append(node.val)</span><br><span class="line">            <span class="comment"># 右孩子先入栈</span></span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                stack.append(node.right)</span><br><span class="line">            <span class="comment"># 左孩子后入栈</span></span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                stack.append(node.left)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>中序遍历（迭代法）</p>
-<p>在迭代的过程中，其实我们有两个操作：</p>
-<ol>
-<li>处理：将元素放进result数组中</li>
-<li>访问：遍历节点</li>
-</ol>
-<p>中序遍历是左中右，先访问的是二叉树顶部的节点，然后一层一层向下访问，直到到达树左面的最底部，再开始处理节点（也就是在把节点的数值放进result数组中），这就造成了<strong>处理顺序和访问顺序是不一致的。</strong></p>
-<p>那么<strong>在使用迭代法写中序遍历，就需要借用指针的遍历来帮助访问节点，栈则用来处理节点上的元素。</strong></p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        stack = []  <span class="comment"># 不能提前将root结点加入stack中</span></span><br><span class="line">        result = []</span><br><span class="line">        cur = root</span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">or</span> stack:</span><br><span class="line">            <span class="comment"># 先迭代访问最底层的左子树结点</span></span><br><span class="line">            <span class="keyword">if</span> cur:     </span><br><span class="line">                stack.append(cur)</span><br><span class="line">                cur = cur.left		</span><br><span class="line">            <span class="comment"># 到达最左结点后处理栈顶结点    </span></span><br><span class="line">            <span class="keyword">else</span>:		</span><br><span class="line">                cur = stack.pop()</span><br><span class="line">                result.append(cur.val)</span><br><span class="line">                <span class="comment"># 取栈顶元素右结点</span></span><br><span class="line">                cur = cur.right	</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>后序遍历（迭代法）</p>
-<p>只需要调整一下前序遍历的代码顺序，就变成中右左的遍历顺序，然后在反转result数组，输出的结果顺序就是左右中了</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        stack = [root]</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            <span class="comment"># 中结点先处理</span></span><br><span class="line">            result.append(node.val)</span><br><span class="line">            <span class="comment"># 左孩子先入栈</span></span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                stack.append(node.left)</span><br><span class="line">            <span class="comment"># 右孩子后入栈</span></span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                stack.append(node.right)</span><br><span class="line">        <span class="comment"># 将最终的数组翻转</span></span><br><span class="line">        <span class="keyword">return</span> result[::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="二叉树的统一迭代"><a href="#二叉树的统一迭代" class="headerlink" title="二叉树的统一迭代"></a>二叉树的统一迭代</h3><p>使用栈的话，<strong>无法同时解决访问节点（遍历节点）和处理节点（将元素放进结果集）不一致的情况</strong>。</p>
-<p><strong>那我们就将访问的节点放入栈中，把要处理的节点也放入栈中但是要做标记。</strong></p>
-<p>如何标记呢，<strong>就是要处理的节点放入栈之后，紧接着放入一个空指针作为标记。</strong> 这种方法也可以叫做标记法。</p>
-<ul>
-<li>前序遍历</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        result = []</span><br><span class="line">        st= []</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            st.append(root)</span><br><span class="line">        <span class="keyword">while</span> st:</span><br><span class="line">            node = st.pop()</span><br><span class="line">            <span class="keyword">if</span> node != <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> node.right: <span class="comment">#右</span></span><br><span class="line">                    st.append(node.right)</span><br><span class="line">                <span class="keyword">if</span> node.left: <span class="comment">#左</span></span><br><span class="line">                    st.append(node.left)</span><br><span class="line">                st.append(node) <span class="comment">#中</span></span><br><span class="line">                st.append(<span class="literal">None</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                node = st.pop()</span><br><span class="line">                result.append(node.val)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>中序遍历</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        result = []</span><br><span class="line">        st = []</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            st.append(root)</span><br><span class="line">        <span class="keyword">while</span> st:</span><br><span class="line">            node = st.pop()</span><br><span class="line">            <span class="keyword">if</span> node != <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> node.right: <span class="comment">#添加右节点（空节点不入栈）</span></span><br><span class="line">                    st.append(node.right)</span><br><span class="line">                </span><br><span class="line">                st.append(node) <span class="comment">#添加中节点</span></span><br><span class="line">                st.append(<span class="literal">None</span>) <span class="comment">#中节点访问过，但是还没有处理，加入空节点做为标记。</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> node.left: <span class="comment">#添加左节点（空节点不入栈）</span></span><br><span class="line">                    st.append(node.left)</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment">#只有遇到空节点的时候，才将下一个节点放进结果集</span></span><br><span class="line">                node = st.pop() <span class="comment">#重新取出栈中元素</span></span><br><span class="line">                result.append(node.val) <span class="comment">#加入到结果集</span></span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>后序遍历</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        result = []</span><br><span class="line">        st = []</span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            st.append(root)</span><br><span class="line">        <span class="keyword">while</span> st:</span><br><span class="line">            node = st.pop()</span><br><span class="line">            <span class="keyword">if</span> node != <span class="literal">None</span>:</span><br><span class="line">                st.append(node) <span class="comment">#中</span></span><br><span class="line">                st.append(<span class="literal">None</span>)</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> node.right: <span class="comment">#右</span></span><br><span class="line">                    st.append(node.right)</span><br><span class="line">                <span class="keyword">if</span> node.left: <span class="comment">#左</span></span><br><span class="line">                    st.append(node.left)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                node = st.pop()</span><br><span class="line">                result.append(node.val)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>1h 二叉树基础 迭代没自己写 仅整理了一下以后再看</p>
-<p>前序中序后序遍历 递归迭代统一迭代</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/28/Day13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/28/Day13/" class="post-title-link" itemprop="url">代码随想录 Day13 | Stack & Queue | 239 347</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-11-28 14:47:49 / Modified: 22:27:46" itemprop="dateCreated datePublished" datetime="2022-11-28T14:47:49+00:00">2022-11-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Leetcode-239-Sliding-Window-Maximum"><a href="#Leetcode-239-Sliding-Window-Maximum" class="headerlink" title="Leetcode 239.  Sliding Window Maximum"></a>Leetcode 239.  Sliding Window Maximum</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sliding-window-maximum/">https://leetcode.com/problems/sliding-window-maximum/</a></p>
-<ol>
-<li>一开始思路想错了 好难 不会</li>
-</ol>
-<ul>
-<li>单调队列<ul>
-<li>pop(value)：如果窗口移除的元素value等于单调队列的出口元素，那么队列弹出元素，否则不用任何操作</li>
-<li>push(value)：如果push的元素value大于入口元素的数值，那么就将队列入口的元素弹出，直到push元素的数值小于等于队列入口元素的数值为止</li>
-<li>保持如上规则，每次窗口移动的时候，只要que.front()就可以返回当前窗口的最大值。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Copy自https://programmercarl.com/0239.滑动窗口最大值.html</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyQueue</span>: <span class="comment">#单调队列（从大到小</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.queue = deque() <span class="comment">#这里需要使用deque实现单调队列，直接使用list会超时</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#每次弹出的时候，比较当前要弹出的数值是否等于队列出口元素的数值，如果相等则弹出。</span></span><br><span class="line">    <span class="comment">#同时pop之前判断队列当前是否为空。</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="keyword">if</span> self.queue <span class="keyword">and</span> value == self.queue[<span class="number">0</span>]:</span><br><span class="line">            self.queue.popleft()<span class="comment">#list.pop()时间复杂度为O(n),这里需要使用collections.deque()</span></span><br><span class="line">            </span><br><span class="line">    <span class="comment">#如果push的数值大于入口元素的数值，那么就将队列后端的数值弹出，直到push的数值小于等于队列入口元素的数值为止。</span></span><br><span class="line">    <span class="comment">#这样就保持了队列里的数值是单调从大到小的了。</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="keyword">while</span> self.queue <span class="keyword">and</span> value &gt; self.queue[-<span class="number">1</span>]:</span><br><span class="line">            self.queue.pop()</span><br><span class="line">        self.queue.append(value)</span><br><span class="line">        </span><br><span class="line">    <span class="comment">#查询当前队列里的最大值 直接返回队列前端也就是front就可以了。</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">front</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.queue[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxSlidingWindow</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        que = MyQueue()</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k): <span class="comment">#先将前k的元素放进队列</span></span><br><span class="line">            que.push(nums[i])</span><br><span class="line">        result.append(que.front()) <span class="comment">#result 记录前k的元素的最大值</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k, <span class="built_in">len</span>(nums)):</span><br><span class="line">            que.pop(nums[i - k]) <span class="comment">#滑动窗口移除最前面元素</span></span><br><span class="line">            que.push(nums[i]) <span class="comment">#滑动窗口前加入最后面的元素</span></span><br><span class="line">            result.append(que.front()) <span class="comment">#记录对应的最大值</span></span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">      </span><br><span class="line">      </span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>python collections</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxSlidingWindow</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        d = collections.deque()</span><br><span class="line">        out = []</span><br><span class="line">        <span class="keyword">for</span> i, n <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">           </span><br><span class="line">            <span class="keyword">while</span> d <span class="keyword">and</span> nums[d[-<span class="number">1</span>]] &lt; n:</span><br><span class="line">                d.pop()</span><br><span class="line">               </span><br><span class="line">            d.append(i)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> d[<span class="number">0</span>] == i - k:</span><br><span class="line">                d.popleft()</span><br><span class="line">               </span><br><span class="line">            <span class="keyword">if</span> i&gt;=k-<span class="number">1</span>:</span><br><span class="line">                out.append(nums[d[<span class="number">0</span>]])</span><br><span class="line">			</span><br><span class="line">        <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-347-Top-K-Frequent-Elements"><a href="#Leetcode-347-Top-K-Frequent-Elements" class="headerlink" title="Leetcode 347. Top K Frequent Elements"></a>Leetcode 347. Top K Frequent Elements</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/description/">https://leetcode.com/problems/top-k-frequent-elements/description/</a></p>
-<ol>
-<li><p>统计频率 出现n次放进freq[n] freq从后向前遍历 </p>
-<p>Neetcode: <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=YPTqKIgVk-k">https://www.youtube.com/watch?v=YPTqKIgVk-k</a></p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">topKFrequent</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        freq = [[] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums) + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> nums:</span><br><span class="line">            count[n] = <span class="number">1</span> + count.get(n, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">for</span> n, c <span class="keyword">in</span> count.items():</span><br><span class="line">            freq[c].append(n)</span><br><span class="line"></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(freq) - <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> n <span class="keyword">in</span> freq[i]:</span><br><span class="line">                res.append(n)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(res) == k:</span><br><span class="line">                    <span class="keyword">return</span> res</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>随想录：</li>
-</ol>
-<ul>
-<li><p>可以使用<strong>优先级队列</strong>。其实<strong>就是一个披着队列外衣的堆</strong>，因为优先级队列对外接口只是从队头取元素，从队尾添加元素，再无其他取元素的方式，看起来就是一个队列。</p>
-</li>
-<li><p><strong>堆是一棵完全二叉树，树中每个结点的值都不小于（或不大于）其左右孩子的值。</strong> 如果父亲结点是大于等于左右孩子就是<strong>大顶堆</strong>，小于等于左右孩子就是<strong>小顶堆</strong>。</p>
-</li>
-<li><p>定义一个大小为k的大顶堆，在每次移动更新大顶堆的时候，每次弹出都把最大的元素弹出去了，那么怎么保留下来前K个高频元素呢。</p>
-<p>而且使用大顶堆就要把所有元素都进行排序，<strong>所以我们要用小顶堆，因为要统计最大前k个元素，只有小顶堆每次将最小的元素弹出，最后小顶堆里积累的才是前k个最大元素。</strong></p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#时间复杂度：O(nlogk)</span></span><br><span class="line"><span class="comment">#空间复杂度：O(n)</span></span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">topKFrequent</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="comment">#要统计元素出现频率</span></span><br><span class="line">        map_ = &#123;&#125; <span class="comment">#nums[i]:对应出现的次数</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            map_[nums[i]] = map_.get(nums[i], <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#对频率排序</span></span><br><span class="line">        <span class="comment">#定义一个小顶堆，大小为k</span></span><br><span class="line">        pri_que = [] <span class="comment">#小顶堆</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#用固定大小为k的小顶堆，扫面所有频率的数值</span></span><br><span class="line">        <span class="keyword">for</span> key, freq <span class="keyword">in</span> map_.items():</span><br><span class="line">            heapq.heappush(pri_que, (freq, key))</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(pri_que) &gt; k: <span class="comment">#如果堆的大小大于了K，则队列弹出，保证堆的大小一直为k</span></span><br><span class="line">                heapq.heappop(pri_que)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#找出前K个高频元素，因为小顶堆先弹出的是最小的，所以倒序来输出到数组</span></span><br><span class="line">        result = [<span class="number">0</span>] * k</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            result[i] = heapq.heappop(pri_que)[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>单调队列 优先级队列</p>
-<p>还需要掌握</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
