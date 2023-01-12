@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="理论基础· 动态规划，英文：Dynamic Programming，简称DP，如果某一问题有很多重叠子问题，使用动态规划是最有效的。 所以动态规划中每一个状态一定是由上一个状态推导出来的，这一点就区分于贪心，贪心没有状态推导，而是从局部直接选最优的， 解题步骤 确定dp数组（dp table）以及下标的含义 确定递推公式（因为一些情况是递推公式决定了dp数组要如何初始化 dp数组如何初始化 确定遍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录 Day38 | Dynamic Programming | 理论 509 70 746">
+<meta property="og:url" content="http://example.com/2022/12/27/Day38/index.html">
+<meta property="og:site_name" content="off">
+<meta property="og:description" content="理论基础· 动态规划，英文：Dynamic Programming，简称DP，如果某一问题有很多重叠子问题，使用动态规划是最有效的。 所以动态规划中每一个状态一定是由上一个状态推导出来的，这一点就区分于贪心，贪心没有状态推导，而是从局部直接选最优的， 解题步骤 确定dp数组（dp table）以及下标的含义 确定递推公式（因为一些情况是递推公式决定了dp数组要如何初始化 dp数组如何初始化 确定遍">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://code-thinking.cdn.bcebos.com/pics/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%80%BB%E7%BB%93%E5%A4%A7%E7%BA%B21.jpg">
+<meta property="article:published_time" content="2022-12-27T14:12:02.000Z">
+<meta property="article:modified_time" content="2023-01-12T00:52:17.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://code-thinking.cdn.bcebos.com/pics/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%80%BB%E7%BB%93%E5%A4%A7%E7%BA%B21.jpg">
+
+
+<link rel="canonical" href="http://example.com/2022/12/27/Day38/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/12/27/Day38/","path":"2022/12/27/Day38/","title":"代码随想录 Day38 | Dynamic Programming | 理论 509 70 746"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>代码随想录 Day38 | Dynamic Programming | 理论 509 70 746 | off</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">off</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.</span> <span class="nav-text">解题步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-509-Fibonacci-Number"><span class="nav-number">2.</span> <span class="nav-text">Leetcode 509. Fibonacci Number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-70-Climbing-Stairs"><span class="nav-number">3.</span> <span class="nav-text">Leetcode 70. Climbing Stairs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-746-Min-Cost-Climbing-Stairs"><span class="nav-number">4.</span> <span class="nav-text">Leetcode 746. Min Cost Climbing Stairs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E6%94%B6%E8%8E%B7"><span class="nav-number">5.</span> <span class="nav-text">今日收获</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/Day38/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="代码随想录 Day38 | Dynamic Programming | 理论 509 70 746 | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码随想录 Day38 | Dynamic Programming | 理论 509 70 746
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-27 14:12:02" itemprop="dateCreated datePublished" datetime="2022-12-27T14:12:02+00:00">2022-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-01-12 00:52:17" itemprop="dateModified" datetime="2023-01-12T00:52:17+00:00">2023-01-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h3><p>·<img src="https://code-thinking.cdn.bcebos.com/pics/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%80%BB%E7%BB%93%E5%A4%A7%E7%BA%B21.jpg"></p>
+<p>动态规划，英文：Dynamic Programming，简称DP，如果某一问题有很多重叠子问题，使用动态规划是最有效的。</p>
+<p>所以动态规划中每一个状态一定是由上一个状态推导出来的，<strong>这一点就区分于贪心</strong>，贪心没有状态推导，而是从局部直接选最优的，</p>
+<h4 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h4><ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式（因为一些情况是递推公式决定了dp数组要如何初始化</li>
+<li>dp数组如何初始化</li>
+<li>确定遍历顺序</li>
+<li>举例推导dp数组</li>
+</ol>
+<hr>
+<h3 id="Leetcode-509-Fibonacci-Number"><a href="#Leetcode-509-Fibonacci-Number" class="headerlink" title="Leetcode 509. Fibonacci Number"></a>Leetcode 509. Fibonacci Number</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/fibonacci-number/">https://leetcode.com/problems/fibonacci-number/</a></p>
+<p>1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        one = <span class="number">0</span></span><br><span class="line">        two = <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        res = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            res = one + two</span><br><span class="line">            one = two</span><br><span class="line">            two = res</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>动规五部曲：</p>
+<ul>
+<li><p>确定dp数组以及下标的含义：dp[i]的定义为：第i个数的斐波那契数值是dp[i]</p>
+</li>
+<li><p>确定递推公式：<strong>状态转移方程 dp[i] &#x3D; dp[i - 1] + dp[i - 2];</strong></p>
+</li>
+<li><p>dp数组如何初始化：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[0] = 0;</span><br><span class="line">dp[1] = 1;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>确定遍历顺序：从前到后遍历</p>
+</li>
+<li><p>举例推导dp数组：0 1 1 2 3 5 8 13 21 34 55</p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        dp = [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            res = dp[<span class="number">0</span>] + dp[<span class="number">1</span>]</span><br><span class="line">            dp[<span class="number">0</span>] = dp[<span class="number">1</span>]</span><br><span class="line">            dp[<span class="number">1</span>] = res</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">1</span>]</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>递归</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        <span class="keyword">return</span> self.fib(n - <span class="number">1</span>) + self.fib(n - <span class="number">2</span>)</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-70-Climbing-Stairs"><a href="#Leetcode-70-Climbing-Stairs" class="headerlink" title="Leetcode 70. Climbing Stairs"></a>Leetcode 70. Climbing Stairs</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/climbing-stairs/">https://leetcode.com/problems/climbing-stairs/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">3</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        n1, n2 = <span class="number">2</span>, <span class="number">3</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>, n + <span class="number">1</span>):</span><br><span class="line">            temp = n1 + n2</span><br><span class="line">            n1 = n2</span><br><span class="line">            n2 = temp</span><br><span class="line">        <span class="keyword">return</span> n2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>确定dp数组以及下标的含义</p>
+<p>dp[i]： 爬到第i层楼梯，有dp[i]种方法</p>
+</li>
+<li><p>确定递推公式</p>
+<p>首先是dp[i - 1]，上i-1层楼梯，有dp[i - 1]种方法，那么再一步跳一个台阶是dp[i]。</p>
+<p>还有就是dp[i - 2]，上i-2层楼梯，有dp[i - 2]种方法，那么再一步跳两个台阶就是dp[i]。</p>
+<p>那么dp[i]就是 dp[i - 1]与dp[i - 2]之和</p>
+<p>所以 <strong>dp[i] &#x3D; dp[i - 1] + dp[i - 2]</strong> </p>
+</li>
+<li><p>dp数组如何初始化</p>
+<p>不考虑dp[0]如何初始化，只初始化dp[1] &#x3D; 1，dp[2] &#x3D; 2，然后从i &#x3D; 3开始递推，这样才符合dp[i]的定义。</p>
+</li>
+<li><p>确定遍历顺序</p>
+<p>从递推公式dp[i] &#x3D; dp[i - 1] + dp[i - 2] 中可以看出，遍历顺序一定是从前向后遍历的</p>
+</li>
+<li><p>举例推导dp数组</p>
+<p>举例当n为5的时候，dp数组应该是[1,2,3,5,8]</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 空间复杂度为O(n)版本</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># dp[i] 为第 i 阶楼梯有多少种方法爬到楼顶</span></span><br><span class="line">        dp = [<span class="number">0</span>]*(n+<span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n+<span class="number">1</span>):</span><br><span class="line">            dp[i] = dp[i-<span class="number">1</span>] + dp[i-<span class="number">2</span>]</span><br><span class="line">        <span class="keyword">return</span> dp[n]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 空间复杂度为O(1)版本</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        dp = [<span class="number">0</span>]*(n+<span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,n+<span class="number">1</span>):</span><br><span class="line">            tmp = dp[<span class="number">0</span>] + dp[<span class="number">1</span>]</span><br><span class="line">            dp[<span class="number">0</span>] = dp[<span class="number">1</span>]</span><br><span class="line">            dp[<span class="number">1</span>] = tmp</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-746-Min-Cost-Climbing-Stairs"><a href="#Leetcode-746-Min-Cost-Climbing-Stairs" class="headerlink" title="Leetcode 746. Min Cost Climbing Stairs"></a>Leetcode 746. Min Cost Climbing Stairs</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/min-cost-climbing-stairs/">https://leetcode.com/problems/min-cost-climbing-stairs/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minCostClimbingStairs</span>(<span class="params">self, cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cost) - <span class="number">3</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            cost[i] += <span class="built_in">min</span>(cost[i + <span class="number">1</span>], cost[i + <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(cost[<span class="number">0</span>], cost[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>确定dp数组以及下标的含义</p>
+<p>**dp[i]的定义：到达第i台阶所花费的最少体力为dp[i]**。</p>
+</li>
+<li><p>确定递推公式</p>
+<p>**可以有两个途径得到dp[i]，一个是dp[i-1] 一个是dp[i-2]**。</p>
+<p>选最小的，所以dp[i] &#x3D; min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);</p>
+</li>
+<li><p>dp数组如何初始化</p>
+<p>看一下递归公式，dp[i]由dp[i - 1]，dp[i - 2]推出，只初始化dp[0]和dp[1]就够了，其他的最终都是dp[0]dp[1]推出。那么 dp[0] 应该是多少呢？ 根据dp数组的定义，到达第0台阶所花费的最小体力为dp[0]，那么有同学可能想，那dp[0] 应该是 cost[0]，例如 cost &#x3D; [1, 100, 1, 1, 1, 100, 1, 1, 100, 1] 的话，dp[0] 就是 cost[0] 应该是1。</p>
+</li>
+<li><p>确定遍历顺序</p>
+<p>dp[i]由dp[i-1]dp[i-2]推出，所以是从前到后遍历cost数组就可以了。</p>
+</li>
+<li><p>举例推导dp数组</p>
+<p>e.g. cost &#x3D; [1, 100, 1, 1, 1, 100, 1, 1, 100, 1] </p>
+<p>dp &#x3D; [0, 0, 1, 2, 2, 3, 3, 4, 4, 5, 6]</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一步不支付费用</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minCostClimbingStairs</span>(<span class="params">self, cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(cost)</span><br><span class="line">        dp = [<span class="number">0</span>]*(n+<span class="number">1</span>) <span class="comment"># 到达前两步费用为0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n+<span class="number">1</span>):</span><br><span class="line">            dp[i] = <span class="built_in">min</span>(dp[i-<span class="number">1</span>]+cost[i-<span class="number">1</span>], dp[i-<span class="number">2</span>]+cost[i-<span class="number">2</span>])</span><br><span class="line">        <span class="keyword">return</span> dp[-<span class="number">1</span>]</span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line"><span class="comment"># 第一步支付费用</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minCostClimbingStairs</span>(<span class="params">self, cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        dp = [<span class="number">0</span>] * (<span class="built_in">len</span>(cost) + <span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="built_in">len</span>(cost) + <span class="number">1</span>):</span><br><span class="line">            dp[i] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>] + cost[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + cost[i-<span class="number">2</span>])</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="built_in">len</span>(cost)]</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>动态规划！ </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/12/23/Day37/" rel="prev" title="代码随想录 Day37 | Greedy Algorithm | 738 714 968">
+                  <i class="fa fa-chevron-left"></i> 代码随想录 Day37 | Greedy Algorithm | 738 714 968
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
