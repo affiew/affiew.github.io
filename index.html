@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -145,6 +145,236 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/14/Day41/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/14/Day41/" class="post-title-link" itemprop="url">代码随想录 Day41 | Dynamic Programming | 343 96</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-14 01:49:45" itemprop="dateCreated datePublished" datetime="2023-01-14T01:49:45+00:00">2023-01-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-02-25 10:50:27" itemprop="dateModified" datetime="2023-02-25T10:50:27+00:00">2023-02-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <hr>
+<h3 id="Leetcode-343-Integer-Break"><a href="#Leetcode-343-Integer-Break" class="headerlink" title="Leetcode 343.  Integer Break"></a>Leetcode 343.  Integer Break</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/integer-break/">https://leetcode.com/problems/integer-break/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">integerBreak</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        dp = [<span class="number">0</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 假设对正整数 i 拆分出的第一个正整数是 j（1 &lt;= j &lt; i），则有以下两种方案：</span></span><br><span class="line">            <span class="comment"># 1) 将 i 拆分成 j 和 i−j 的和，且 i−j 不再拆分成多个正整数，此时的乘积是 j * (i-j)</span></span><br><span class="line">            <span class="comment"># 2) 将 i 拆分成 j 和 i−j 的和，且 i−j 继续拆分成多个正整数，此时的乘积是 j * dp[i-j]</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, i // <span class="number">2</span> + <span class="number">1</span>):</span><br><span class="line">                dp[i] = <span class="built_in">max</span>(dp[i], <span class="built_in">max</span>(j * (i - j), j * dp[i - j]))</span><br><span class="line">        <span class="keyword">return</span> dp[n]</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>确定dp数组（dp table）以及下标的含义</p>
+<p>dp[i]：分拆数字i，可以得到的最大乘积为dp[i]。</p>
+</li>
+<li><p>确定递推公式</p>
+<p>dp[i]最大乘积是怎么得到的</p>
+<p>从1遍历j，然后有两种渠道得到dp[i].</p>
+<p>一个是j * (i - j) 直接相乘。</p>
+<p>一个是j * dp[i - j]，相当于是拆分(i - j)</p>
+</li>
+<li><p>dp数组的初始化</p>
+<p>只初始化dp[2] &#x3D; 1</p>
+</li>
+<li><p>确定遍历顺序</p>
+<p>dp[i] &#x3D; max(dp[i], max((i - j) * j, dp[i - j] * j));</p>
+<p>dp[i] 是依靠 dp[i - j]的状态，所以遍历i一定是从前向后遍历，先有dp[i - j]再有dp[i]。</p>
+</li>
+<li><p>举例推导dp数组</p>
+<p>…</p>
+</li>
+</ol>
+<hr>
+<h3 id="Leetcode-63-Unique-Paths-II"><a href="#Leetcode-63-Unique-Paths-II" class="headerlink" title="Leetcode 63. Unique Paths II"></a>Leetcode 63. Unique Paths II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-paths-ii/">https://leetcode.com/problems/unique-paths-ii/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numTrees</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        dp = [<span class="number">0</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">0</span>], dp[<span class="number">1</span>] = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, i + <span class="number">1</span>):</span><br><span class="line">                dp[i] += dp[j - <span class="number">1</span>] * dp[i - j]</span><br><span class="line">        <span class="keyword">return</span> dp[-<span class="number">1</span>]</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<p>dp[3]，就是 元素1为头结点搜索树的数量 + 元素2为头结点搜索树的数量 + 元素3为头结点搜索树的数量</p>
+<p>元素1为头结点搜索树的数量 &#x3D; 右子树有2个元素的搜索树数量 * 左子树有0个元素的搜索树数量</p>
+<p>元素2为头结点搜索树的数量 &#x3D; 右子树有1个元素的搜索树数量 * 左子树有1个元素的搜索树数量</p>
+<p>元素3为头结点搜索树的数量 &#x3D; 右子树有0个元素的搜索树数量 * 左子树有2个元素的搜索树数量</p>
+<p>有2个元素的搜索树数量就是dp[2]。</p>
+<p>有1个元素的搜索树数量就是dp[1]。</p>
+<p>有0个元素的搜索树数量就是dp[0]。</p>
+<p>所以dp[3] &#x3D; dp[2] * dp[0] + dp[1] * dp[1] + dp[0] * dp[2]</p>
+<ol>
+<li><p>确定dp数组（dp table）以及下标的含义</p>
+<p>dp[i] ： 1到i为节点组成的二叉搜索树的个数为dp[i]。</p>
+</li>
+<li><p>确定递推公式</p>
+<p>dp[i] +&#x3D; dp[j - 1] * dp[i - j]; ，j-1 为j为头结点左子树节点数量，i-j 为以j为头结点右子树节点数量</p>
+</li>
+<li><p>dp数组的初始化</p>
+<p>dp[0] &#x3D; 1</p>
+</li>
+<li><p>确定遍历顺序</p>
+<p>首先一定是遍历节点数，从递归公式：dp[i] +&#x3D; dp[j - 1] * dp[i - j]可以看出，节点数为i的状态是依靠 i之前节点数的状态。</p>
+<p>那么遍历i里面每一个数作为头结点的状态，用j来遍历。</p>
+</li>
+<li><p>举例推导dp数组</p>
+<p>…</p>
+</li>
+</ol>
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>动态规划</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/14/Day39/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/14/Day39/" class="post-title-link" itemprop="url">代码随想录 Day39 | Dynamic Programming | 不同路径 62 63</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-01-14 00:57:28 / Modified: 01:49:25" itemprop="dateCreated datePublished" datetime="2023-01-14T00:57:28+00:00">2023-01-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Leetcode-62-Unique-Paths"><a href="#Leetcode-62-Unique-Paths" class="headerlink" title="Leetcode 62. Unique Paths"></a>Leetcode 62. Unique Paths</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-paths/">https://leetcode.com/problems/unique-paths/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uniquePaths</span>(<span class="params">self, m: <span class="built_in">int</span>, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line"></span><br><span class="line">        dp = [<span class="number">1</span>] * n</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">1</span>):</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">                dp[j] = dp[j - <span class="number">1</span>] + dp[j]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dp[n-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>确定dp数组（dp table）以及下标的含义</p>
+<p>dp[i][j] ：表示从（0 ，0）出发，到(i, j) 有dp[i][j]条不同的路径。</p>
+</li>
+<li><p>确定递推公式</p>
+<p>想要求dp[i][j]，只能有两个方向来推导出来，即dp[i - 1][j] 和 dp[i][j - 1]。此时回顾一下 dp[i - 1][j] 表示啥，是从(0, 0)的位置到(i - 1, j)有几条路径，dp[i][j - 1]同理。那么很自然，dp[i][j] &#x3D; dp[i - 1][j] + dp[i][j - 1]，因为dp[i][j]只有这两个方向过来。</p>
+</li>
+<li><p>dp数组的初始化</p>
+<p>首先dp[i][0]一定都是1，因为从(0, 0)的位置到(i, 0)的路径只有一条，那么dp[0][j]也同理。</p>
+</li>
+<li><p>确定遍历顺序</p>
+<p>从左到右一层一层遍历</p>
+</li>
+<li><p>举例推导dp数组</p>
+<p>…</p>
+</li>
+</ol>
+<p>其实用一个一维数组（也可以理解是滚动数组）就可以了</p>
+<hr>
+<h3 id="Leetcode-63-Unique-Paths-II"><a href="#Leetcode-63-Unique-Paths-II" class="headerlink" title="Leetcode 63. Unique Paths II"></a>Leetcode 63. Unique Paths II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-paths-ii/">https://leetcode.com/problems/unique-paths-ii/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uniquePathsWithObstacles</span>(<span class="params">self, obstacleGrid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m = <span class="built_in">len</span>(obstacleGrid)</span><br><span class="line">        n = <span class="built_in">len</span>(obstacleGrid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        dp = [<span class="number">0</span>] * n</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[<span class="number">0</span>][i] == <span class="number">0</span>:</span><br><span class="line">                dp[i] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">             </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                <span class="keyword">if</span> obstacleGrid[i][j] == <span class="number">1</span>:</span><br><span class="line">                    dp[j] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">elif</span> j != <span class="number">0</span>:</span><br><span class="line">                    dp[j] += dp[j-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> dp[n-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<p>初始化障碍之后应该都是0的情况</p>
+<p>遇到障碍dp[i][j]保持0</p>
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>不同路径</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1162,208 +1392,6 @@
 
 <hr>
 <h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>回溯算法 难题 好恨</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/14/Day29/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/14/Day29/" class="post-title-link" itemprop="url">代码随想录 Day29 | Backtracking | 491 46 47</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-14 22:16:37" itemprop="dateCreated datePublished" datetime="2022-12-14T22:16:37+00:00">2022-12-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-12-15 14:07:58" itemprop="dateModified" datetime="2022-12-15T14:07:58+00:00">2022-12-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Leetcode-491-Increasing-Subsequences"><a href="#Leetcode-491-Increasing-Subsequences" class="headerlink" title="Leetcode 491. Increasing Subsequences"></a>Leetcode 491. Increasing Subsequences</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/increasing-subsequences/description/">https://leetcode.com/problems/increasing-subsequences/description/</a></p>
-<ol>
-<li><p>有点难的 用set记录</p>
-<p>本层元素是否重复使用，新的一层set都会重新定义（清空），所以set只负责本层</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findSubsequences</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res = []</span><br><span class="line">        path = []</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>], start_index</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path)&gt;=<span class="number">2</span>:</span><br><span class="line">                res.append(path[:])</span><br><span class="line">            used = <span class="built_in">set</span>()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start_index, <span class="built_in">len</span>(nums)):</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (path <span class="keyword">and</span> nums[i] &lt; path[-<span class="number">1</span>]) <span class="keyword">or</span> nums[i] <span class="keyword">in</span> used:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">               </span><br><span class="line">                used.add(nums[i])</span><br><span class="line">                path.append(nums[i])</span><br><span class="line">                backtracking(nums, i+<span class="number">1</span>)</span><br><span class="line">                path.pop()</span><br><span class="line"></span><br><span class="line">        backtracking(nums,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">                </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-46-Permutations"><a href="#Leetcode-46-Permutations" class="headerlink" title="Leetcode 46. Permutations"></a>Leetcode 46. Permutations</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/permutations/description/">https://leetcode.com/problems/permutations/description/</a></p>
-<ol>
-<li><p>排列是有序的，也就是说 [1,2] 和 [2,1] 是两个集合，这和之前分析的子集以及组合所不同的地方。</p>
-<p>因为排列问题，每次都要从头开始搜索，例如元素1在[1,2]中已经使用过了，但是在[2,1]中还要再使用一次1。</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">permute</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line"></span><br><span class="line">        res = []</span><br><span class="line">        path = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">nums:<span class="type">List</span>[<span class="built_in">int</span>], start_index: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) == <span class="built_in">len</span>(nums): </span><br><span class="line">                res.append(path[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[i] <span class="keyword">in</span> path:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                path.append(nums[i])</span><br><span class="line">                backtracking(nums, i+<span class="number">1</span>)</span><br><span class="line">                path.pop()</span><br><span class="line"></span><br><span class="line">        backtracking(nums,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-47-Permutations-II"><a href="#Leetcode-47-Permutations-II" class="headerlink" title="Leetcode 47. Permutations II"></a>Leetcode 47. Permutations II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/permutations-ii/">https://leetcode.com/problems/permutations-ii/</a></p>
-<ol>
-<li>排序去重 used对树层中前一位去重</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">permuteUnique</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line"></span><br><span class="line">        res = []</span><br><span class="line">        path = []</span><br><span class="line">        used = [<span class="number">0</span>] * <span class="built_in">len</span>(nums)</span><br><span class="line">        nums.sort()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">nums:<span class="type">List</span>[<span class="built_in">int</span>]</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path, used</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) == <span class="built_in">len</span>(nums): </span><br><span class="line">                res.append(path[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> used[i]:</span><br><span class="line">                    <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i-<span class="number">1</span>] <span class="keyword">and</span> <span class="keyword">not</span> used[i-<span class="number">1</span>]:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    used[i] = <span class="number">1</span></span><br><span class="line">                    path.append(nums[i])</span><br><span class="line">                    backtracking(nums)</span><br><span class="line">                    path.pop()</span><br><span class="line">                    used[i] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        backtracking(nums)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>回溯算法 排列 去重</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/13/Day28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/13/Day28/" class="post-title-link" itemprop="url">代码随想录 Day28 | Backtracking | 93 78 90</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-12-13 22:57:34 / Modified: 23:32:56" itemprop="dateCreated datePublished" datetime="2022-12-13T22:57:34+00:00">2022-12-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Leetcode-93-Restore-IP-Addresses"><a href="#Leetcode-93-Restore-IP-Addresses" class="headerlink" title="Leetcode 93. Restore IP Addresses"></a>Leetcode 93. Restore IP Addresses</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/restore-ip-addresses/">https://leetcode.com/problems/restore-ip-addresses/</a></p>
-<ol>
-<li>寄几写的 谢谢回文串分割</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">restoreIpAddresses</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        res = []</span><br><span class="line">        path = []</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">s: <span class="built_in">str</span>, start_index: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> start_index &gt;= <span class="built_in">len</span>(s):</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(path) == <span class="number">4</span>:</span><br><span class="line">                    ip = <span class="string">&quot;.&quot;</span>.join(path)</span><br><span class="line">                    res.append(ip)</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) &gt; <span class="number">4</span>:</span><br><span class="line">                <span class="keyword">return</span>            </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start_index, <span class="built_in">len</span>(s)):</span><br><span class="line">                </span><br><span class="line">                temp = s[start_index:i+<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> self.is_valid(s, start_index, i): </span><br><span class="line">                    path.append(temp)</span><br><span class="line">                    backtracking(s, i+<span class="number">1</span>)  </span><br><span class="line">                    path.pop()</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        backtracking(s, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_valid</span>(<span class="params">self, s: <span class="built_in">str</span>, i: <span class="built_in">int</span>, j: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> j - i &gt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> i == j:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> s[i] == <span class="string">&#x27;0&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">int</span>(s[i:j+<span class="number">1</span>]) &gt; <span class="number">255</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-78-Subsets"><a href="#Leetcode-78-Subsets" class="headerlink" title="Leetcode 78. Subsets"></a>Leetcode 78. Subsets</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/subsets/">https://leetcode.com/problems/subsets/</a></p>
-<p>1. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subsets</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line"></span><br><span class="line">        res = []</span><br><span class="line">        path = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>], start_index: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path</span><br><span class="line">            <span class="comment"># 收集子集，要放在终止条件的上面，否则会漏掉自己</span></span><br><span class="line">            res.append(path[:])</span><br><span class="line">            <span class="keyword">if</span> start_index == <span class="built_in">len</span>(nums): <span class="comment"># 终止条件可以不加</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start_index, <span class="built_in">len</span>(nums)):</span><br><span class="line">                path.append(nums[i])</span><br><span class="line">                backtracking(nums, i+<span class="number">1</span>)</span><br><span class="line">                path.pop()    </span><br><span class="line"></span><br><span class="line">        backtracking(nums, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res </span><br><span class="line">      </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-90-Subsets-II"><a href="#Leetcode-90-Subsets-II" class="headerlink" title="Leetcode 90. Subsets II"></a>Leetcode 90. Subsets II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/subsets-ii/">https://leetcode.com/problems/subsets-ii/</a></p>
-<ol>
-<li>排序去重</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subsetsWithDup</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line"> </span><br><span class="line">        res = []</span><br><span class="line">        path = []</span><br><span class="line">        nums.sort()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtracking</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>], start_index: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, path</span><br><span class="line">            </span><br><span class="line">            res.append(path[:])</span><br><span class="line">            <span class="keyword">if</span> start_index == <span class="built_in">len</span>(nums):</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start_index, <span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> i &gt; start_index <span class="keyword">and</span> nums[i] == nums[i-<span class="number">1</span>]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                path.append(nums[i])</span><br><span class="line">                backtracking(nums, i+<span class="number">1</span>)</span><br><span class="line">                path.pop()    </span><br><span class="line"></span><br><span class="line">        backtracking(nums, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> res </span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>回溯算法 分割 子集</p>
 
       
     </div>
