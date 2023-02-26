@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="背包问题 01背包有n件物品和一个最多能背重量为w 的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。每件物品只能用一次，求解将哪些物品装入背包里物品价值总和最大。 二维数组实现  确定dp数组（dp table）以及下标的含义 使用二维数组，即dp[i][j] 表示从下标为[0-i]的物品里任意取，放进容量为j的背包，价值总和最大是多少。  确定递推公式  不放物品">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录 Day41 | Dynamic Programming | 背包问题 416">
+<meta property="og:url" content="http://example.com/2023/02/25/Day42/index.html">
+<meta property="og:site_name" content="off">
+<meta property="og:description" content="背包问题 01背包有n件物品和一个最多能背重量为w 的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。每件物品只能用一次，求解将哪些物品装入背包里物品价值总和最大。 二维数组实现  确定dp数组（dp table）以及下标的含义 使用二维数组，即dp[i][j] 表示从下标为[0-i]的物品里任意取，放进容量为j的背包，价值总和最大是多少。  确定递推公式  不放物品">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210117171307407.png">
+<meta property="article:published_time" content="2023-02-25T12:18:05.000Z">
+<meta property="article:modified_time" content="2023-02-26T20:20:04.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210117171307407.png">
+
+
+<link rel="canonical" href="http://example.com/2023/02/25/Day42/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/02/25/Day42/","path":"2023/02/25/Day42/","title":"代码随想录 Day41 | Dynamic Programming | 背包问题 416"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>代码随想录 Day41 | Dynamic Programming | 背包问题 416 | off</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">off</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#01%E8%83%8C%E5%8C%85"><span class="nav-number">1.1.</span> <span class="nav-text">01背包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leetcode-416-Partition-Equal-Subset-Sum"><span class="nav-number">2.</span> <span class="nav-text">Leetcode 416. Partition Equal Subset Sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E6%94%B6%E8%8E%B7"><span class="nav-number">3.</span> <span class="nav-text">今日收获</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/25/Day42/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="代码随想录 Day41 | Dynamic Programming | 背包问题 416 | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码随想录 Day41 | Dynamic Programming | 背包问题 416
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-25 12:18:05" itemprop="dateCreated datePublished" datetime="2023-02-25T12:18:05+00:00">2023-02-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-02-26 20:20:04" itemprop="dateModified" datetime="2023-02-26T20:20:04+00:00">2023-02-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <hr>
+<h3 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h3><p><img src="https://img-blog.csdnimg.cn/20210117171307407.png"></p>
+<h4 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a><strong>01背包</strong></h4><p>有n件物品和一个最多能背重量为w 的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。<strong>每件物品只能用一次</strong>，求解将哪些物品装入背包里物品价值总和最大。</p>
+<p><strong>二维数组实现</strong></p>
+<ol>
+<li><p>确定dp数组（dp table）以及下标的含义</p>
+<p>使用二维数组，即<strong>dp[i][j] 表示从下标为[0-i]的物品里任意取，放进容量为j的背包，价值总和最大是多少</strong>。</p>
+</li>
+<li><p>确定递推公式</p>
+<ul>
+<li><strong>不放物品i</strong>：由dp[i - 1][j]推出，即背包容量为j，里面不放物品i的最大价值，此时dp[i][j]就是dp[i - 1][j]。(其实就是当物品i的重量大于背包j的重量时，物品i无法放进背包中，所以被背包内的价值依然和前面相同。)</li>
+<li><strong>放物品i</strong>：由dp[i - 1][j - weight[i]]推出，dp[i - 1][j - weight[i]] 为背包容量为j - weight[i]的时候不放物品i的最大价值，那么dp[i - 1][j - weight[i]] + value[i] （物品i的价值），就是背包放物品i得到的最大价值</li>
+</ul>
+<p>所以递归公式： dp[i][j] &#x3D; max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);</p>
+</li>
+<li><p>dp数组的初始化</p>
+<p>dp[i][0] &#x3D; 0</p>
+<p>当 j &lt; weight[0]的时候，dp[0][j] 应该是 0，因为背包容量比编号0的物品重量还小。</p>
+<p>当j &gt;&#x3D; weight[0]时，dp[0][j] 应该是value[0]，因为背包容量放足够放编号0物品。</p>
+</li>
+<li><p>确定遍历顺序</p>
+<p>从左上开始遍历 先遍历物品或者先遍历背包都可以</p>
+</li>
+<li><p>举例推导dp数组</p>
+<p>…</p>
+</li>
+</ol>
+<p><strong>一维数组实现</strong></p>
+<ol>
+<li><p>确定dp数组（dp table）以及下标的含义</p>
+<p>在一维dp数组中，dp[j]表示：容量为j的背包，所背的物品价值可以最大为dp[j]。</p>
+</li>
+<li><p>确定递推公式</p>
+<p>dp[j]可以通过dp[j - weight[i]]推导出来，dp[j - weight[i]]表示容量为j - weight[i]的背包所背的最大价值。</p>
+<p>dp[j - weight[i]] + value[i] 表示 容量为 j - 物品i重量 的背包 加上 物品i的价值。（也就是容量为j的背包，放入物品i了之后的价值即：dp[j]）</p>
+<p>此时dp[j]有两个选择，一个是取自己dp[j] 相当于 二维dp数组中的dp[i-1][j]，即不放物品i，一个是取dp[j - weight[i]] + value[i]，即放物品i，指定是取最大的，毕竟是求最大价值，</p>
+<p><strong>dp[j] &#x3D; max(dp[j], dp[j - weight[i]] + value[i]);</strong></p>
+</li>
+<li><p>dp数组的初始化</p>
+<p>dp数组在推导的时候一定是取价值最大的数，如果题目给的价值都是正整数那么非0下标都初始化为0就可以了。</p>
+<p><strong>这样才能让dp数组在递归公式的过程中取的最大的价值，而不是被初始值覆盖了</strong>。</p>
+<p>那么我假设物品价值都是大于0的，所以dp数组初始化的时候，都初始为0就可以了。</p>
+</li>
+<li><p>确定遍历顺序</p>
+<p>正序遍历物品 倒叙遍历背包</p>
+<p><strong>倒序遍历是为了保证物品i只被放入一次</strong></p>
+</li>
+<li><p>举例推导dp数组</p>
+<p>…</p>
+</li>
+</ol>
+<hr>
+<h3 id="Leetcode-416-Partition-Equal-Subset-Sum"><a href="#Leetcode-416-Partition-Equal-Subset-Sum" class="headerlink" title="Leetcode 416. Partition Equal Subset Sum"></a>Leetcode 416. Partition Equal Subset Sum</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/partition-equal-subset-sum/">https://leetcode.com/problems/partition-equal-subset-sum/</a></p>
+<p>这道题目是要找是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
+<p>那么只要找到集合里能够出现 sum &#x2F; 2 的子集总和，就算是可以分割成两个相同元素和子集了。</p>
+<p>01背包问题套到本题</p>
+<ul>
+<li>背包的体积为sum &#x2F; 2</li>
+<li>背包要放入的商品（集合里的元素）重量为 元素的数值，价值也为元素的数值</li>
+<li>背包如果正好装满，说明找到了总和为 sum &#x2F; 2 的子集。</li>
+<li>背包中每一个元素是不可重复放入。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canPartition</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        target = <span class="built_in">sum</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> target % <span class="number">2</span> == <span class="number">1</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        target //= <span class="number">2</span></span><br><span class="line">        dp = [<span class="number">0</span>] * (target+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(target, nums[i] - <span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">                dp[j] = <span class="built_in">max</span>(dp[j], dp[j - nums[i]] + nums[i])</span><br><span class="line">        <span class="keyword">return</span> target == dp[target]</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>确定dp数组（dp table）以及下标的含义</p>
+<p>dp[j] 表示： 容量为j的背包，所背的物品价值最大可以为dp[j]。</p>
+<p>本题中每一个元素的数值既是重量，也是价值。</p>
+<p>**套到本题，dp[j]表示 背包总容量（所能装的总重量）是j，放进物品后，背的最大重量为dp[j]**。</p>
+<p>那么如果背包容量为target， dp[target]就是装满 背包之后的重量，所以 当 dp[target] &#x3D;&#x3D; target 的时候，背包就装满了。</p>
+</li>
+<li><p>确定递推公式</p>
+<p>dp[j] &#x3D; max(dp[j], dp[j - nums[i]] + nums[i]);</p>
+</li>
+<li><p>dp数组的初始化</p>
+<p>本题题目中 只包含正整数的非空数组，所以非0下标的元素初始化为0</p>
+</li>
+<li><p>确定遍历顺序</p>
+<p>如果使用一维dp数组，物品遍历的for循环放在外层，遍历背包的for循环放在内层，且内层for循环倒序遍历</p>
+</li>
+<li><p>举例推导dp数组</p>
+<p>…</p>
+</li>
+</ol>
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>01背包</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/01/14/Day41/" rel="prev" title="代码随想录 Day41 | Dynamic Programming | 343 96">
+                  <i class="fa fa-chevron-left"></i> 代码随想录 Day41 | Dynamic Programming | 343 96
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
