@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -145,6 +145,183 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/22/Day8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/22/Day8/" class="post-title-link" itemprop="url">代码随想录 Day8 | String | 344 541 151 剑指Offer 05 08</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-22 21:59:54" itemprop="dateCreated datePublished" datetime="2022-11-22T21:59:54+00:00">2022-11-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-11-23 00:32:43" itemprop="dateModified" datetime="2022-11-23T00:32:43+00:00">2022-11-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Leetcode-344-Reverse-String"><a href="#Leetcode-344-Reverse-String" class="headerlink" title="Leetcode 344. Reverse String"></a>Leetcode 344. Reverse String</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-string/">https://leetcode.com/problems/reverse-string/</a></p>
+<p>1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseString</span>(<span class="params">self, s: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Do not return anything, modify s in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n//<span class="number">2</span>):</span><br><span class="line">            temp = s[i]</span><br><span class="line">            s[i] = s[n-<span class="number">1</span>-i]</span><br><span class="line">            s[n-<span class="number">1</span>-i] = temp</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>随想录：反转字符串依然是使用双指针的方法，只不过对于字符串的反转，要比链表简单一些。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseString</span>(<span class="params">self, s: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Do not return anything, modify s in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        left, right = <span class="number">0</span>, <span class="built_in">len</span>(s) - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 该方法已经不需要判断奇偶数，经测试后时间空间复杂度比用 for i in range(right//2)更低</span></span><br><span class="line">        <span class="comment"># 推荐该写法，更加通俗易懂</span></span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            s[left], s[right] = s[right], s[left]</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-541-Reverse-String-II"><a href="#Leetcode-541-Reverse-String-II" class="headerlink" title="Leetcode 541. Reverse String II"></a>Leetcode 541. Reverse String II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-string-ii/">https://leetcode.com/problems/reverse-string-ii/</a></p>
+<p>1. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseStr</span>(<span class="params">self, s: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        s = <span class="built_in">list</span>(s)</span><br><span class="line">        <span class="keyword">if</span> k &gt; <span class="built_in">len</span>(s):</span><br><span class="line">            k = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(s), <span class="number">2</span>*k):</span><br><span class="line">            <span class="keyword">if</span> i + k &gt; <span class="built_in">len</span>(s):</span><br><span class="line">                k = <span class="built_in">len</span>(s) - i</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(k//<span class="number">2</span>):</span><br><span class="line">                left = i + j</span><br><span class="line">                right = i + k - j - <span class="number">1</span></span><br><span class="line">                temp = s[left]</span><br><span class="line">                s[left] = s[right]</span><br><span class="line">                s[right] = temp</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(s)</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>⚠️ 如果剩余字符少于 k 个，则将剩余字符全部反转。</p>
+</li>
+<li><p>在遍历字符串的过程中，让 i +&#x3D; (2 * k)，i 每次移动 2 * k ，然后判断是否需要有反转的区间。</p>
+</li>
+<li><p>在Python中，字符串是不可变类型，即无法直接修改字符串的某一位字符。直接修改会报错：<code>TypeError: &#39;str&#39; object does not support item assignment</code></p>
+<p>因此改变一个字符串的元素需要新建一个新的字符串。</p>
+<ul>
+<li>将字符串转换成列表后修改值，然后用join组成新字符串</li>
+<li>通过字符串序列切片方式</li>
+<li>使用字符串的replace函数</li>
+<li>通过给一个变量赋值</li>
+</ul>
+</li>
+</ul>
+<p>2. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseStr</span>(<span class="params">self, s: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="comment"># Two pointers. Another is inside the loop.</span></span><br><span class="line">        p = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> p &lt; <span class="built_in">len</span>(s):</span><br><span class="line">            p2 = p + k</span><br><span class="line">            <span class="comment"># Written in this could be more pythonic.</span></span><br><span class="line">            s = s[:p] + s[p: p2][::-<span class="number">1</span>] + s[p2:]</span><br><span class="line">            p = p + <span class="number">2</span> * k</span><br><span class="line">        <span class="keyword">return</span> s</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="剑指Offer-05-替换空格"><a href="#剑指Offer-05-替换空格" class="headerlink" title="剑指Offer 05.替换空格"></a>剑指Offer 05.替换空格</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ti-huan-kong-ge-lcof/">https://leetcode.cn/problems/ti-huan-kong-ge-lcof/</a></p>
+<ol>
+<li>笨蛋解法</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">replaceSpace</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        s = <span class="built_in">list</span>(s)</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(s):</span><br><span class="line">            <span class="keyword">if</span> s[i] == <span class="string">&#x27; &#x27;</span>:</span><br><span class="line">                rep = s[<span class="number">0</span>:i] + [<span class="string">&#x27;%&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;0&#x27;</span>] + s[i+<span class="number">1</span>:]</span><br><span class="line">                s = rep</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(s)</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>随想录：</p>
+<p>首先扩充数组到每个空格替换成”%20”之后的大小。</p>
+<p>然后从后向前替换空格，也就是双指针法:</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">replaceSpace</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        counter = s.count(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        </span><br><span class="line">        res = <span class="built_in">list</span>(s)</span><br><span class="line">        <span class="comment"># 每碰到一个空格就多拓展两个格子，1 + 2 = 3个位置存’%20‘</span></span><br><span class="line">        res.extend([<span class="string">&#x27; &#x27;</span>] * counter * <span class="number">2</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 原始字符串的末尾，拓展后的末尾</span></span><br><span class="line">        left, right = <span class="built_in">len</span>(s) - <span class="number">1</span>, <span class="built_in">len</span>(res) - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> left &gt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> res[left] != <span class="string">&#x27; &#x27;</span>:</span><br><span class="line">                res[right] = res[left]</span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># [right - 2, right), 左闭右开</span></span><br><span class="line">                res[right - <span class="number">2</span>: right + <span class="number">1</span>] = <span class="string">&#x27;%20&#x27;</span></span><br><span class="line">                right -= <span class="number">3</span></span><br><span class="line">            left -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(res)</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+<p>3. </p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">replaceSpace</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="comment"># method 1 - Very rude</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;%20&quot;</span>.join(s.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># method 2 - Reverse the s when counting in for loop, then update from the end.</span></span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> e, i <span class="keyword">in</span> <span class="built_in">enumerate</span>(s[::-<span class="number">1</span>]):</span><br><span class="line">            <span class="built_in">print</span>(i, e)</span><br><span class="line">            <span class="keyword">if</span> i == <span class="string">&quot; &quot;</span>:</span><br><span class="line">                s = s[: n - (e + <span class="number">1</span>)] + <span class="string">&quot;%20&quot;</span> + s[n - e:]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-151-Reverse-Words-in-a-String"><a href="#Leetcode-151-Reverse-Words-in-a-String" class="headerlink" title="Leetcode 151. Reverse Words in a String"></a>Leetcode 151. Reverse Words in a String</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string/">https://leetcode.com/problems/reverse-words-in-a-string/</a></p>
+<ol>
+<li>只想到用数组暂存单词</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        words = []</span><br><span class="line">        temp = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i] == <span class="string">&#x27; &#x27;</span>:</span><br><span class="line">                temp = []</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            temp.append(s[i])</span><br><span class="line">            <span class="keyword">if</span> i+<span class="number">1</span> &gt;= <span class="built_in">len</span>(s) <span class="keyword">or</span> s[i+<span class="number">1</span>] == <span class="string">&#x27; &#x27;</span> :</span><br><span class="line">                words.append(temp)</span><br><span class="line">        res = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(words)-<span class="number">1</span>, -<span class="number">1</span> ,-<span class="number">1</span>):</span><br><span class="line">            res += <span class="string">&#x27;&#x27;</span>.join(words[i])</span><br><span class="line">            <span class="keyword">if</span> i != <span class="number">0</span>:</span><br><span class="line">                res += <span class="string">&#x27; &#x27;</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>O(1):<ul>
+<li>移除多余空格：”the sky is blue”</li>
+<li>将整个字符串反转：”eulb si yks eht”</li>
+<li>将每个单词反转：”blue is sky the”</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        res = []</span><br><span class="line">        r = <span class="built_in">len</span>(s)-<span class="number">1</span></span><br><span class="line">        <span class="comment"># 移除多余空格</span></span><br><span class="line">        <span class="keyword">while</span> s[r] ==<span class="string">&#x27; &#x27;</span>:</span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> s[i] == <span class="string">&#x27; &#x27;</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            res.append(s[i])</span><br><span class="line">            <span class="keyword">if</span> i+<span class="number">1</span> &lt; r <span class="keyword">and</span> s[i+<span class="number">1</span>] == <span class="string">&#x27; &#x27;</span> :</span><br><span class="line">                res.append(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="comment"># 字符串反转</span></span><br><span class="line">        l = <span class="number">0</span></span><br><span class="line">        r = <span class="built_in">len</span>(res)-<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            res[l],res[r] = res[r],res[l] </span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">        <span class="comment"># 单词反转</span></span><br><span class="line">        l = <span class="number">0</span></span><br><span class="line">        r = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> l &lt; <span class="built_in">len</span>(res):</span><br><span class="line">            <span class="keyword">while</span> r &lt;= <span class="built_in">len</span>(res)-<span class="number">1</span> <span class="keyword">and</span> res[r] != <span class="string">&#x27; &#x27;</span> :</span><br><span class="line">                r += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>((r - l)//<span class="number">2</span>):</span><br><span class="line">                res[l+i], res[r-i-<span class="number">1</span>] =  res[r-i-<span class="number">1</span>], res[l+i]</span><br><span class="line">            l = r + <span class="number">1</span></span><br><span class="line">            r = r + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(res)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="剑指-Offer-58-II-左旋转字符串"><a href="#剑指-Offer-58-II-左旋转字符串" class="headerlink" title="剑指 Offer 58 - II. 左旋转字符串"></a>剑指 Offer 58 - II. 左旋转字符串</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/">https://leetcode.cn/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/</a></p>
+<ol>
+<li>Python有点过分了</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseLeftWords</span>(<span class="params">self, s: <span class="built_in">str</span>, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> s[n:]+s[:n]</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>随想录：如果限制空间<ol>
+<li>反转区间为前n的子串</li>
+<li>反转区间为n到末尾的子串</li>
+<li>反转整个字符串</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseLeftWords</span>(<span class="params">self, s: <span class="built_in">str</span>, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        s = <span class="built_in">list</span>(s)</span><br><span class="line">        s[<span class="number">0</span>:n] = <span class="built_in">list</span>(<span class="built_in">reversed</span>(s[<span class="number">0</span>:n]))</span><br><span class="line">        s[n:] = <span class="built_in">list</span>(<span class="built_in">reversed</span>(s[n:]))</span><br><span class="line">        s.reverse()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(s)</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>不能用reversed的话 自己写一个</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseLeftWords</span>(<span class="params">self, s: <span class="built_in">str</span>, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">reverse_sub</span>(<span class="params">lst, left, right</span>):</span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                lst[left], lst[right] = lst[right], lst[left]</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">        res = <span class="built_in">list</span>(s)</span><br><span class="line">        end = <span class="built_in">len</span>(res) - <span class="number">1</span></span><br><span class="line">        reverse_sub(res, <span class="number">0</span>, n - <span class="number">1</span>)</span><br><span class="line">        reverse_sub(res, n, end)</span><br><span class="line">        reverse_sub(res, <span class="number">0</span>, end)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(res)</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>学习时长2小时 字符串</p>
+<p>反转字符串 双指针替换空格 先整体反转再分别反转</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
