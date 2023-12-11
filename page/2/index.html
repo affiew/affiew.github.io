@@ -115,7 +115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -145,257 +145,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/17/Day32/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/17/Day32/" class="post-title-link" itemprop="url">代码随想录 Day32 | Greedy Algorithm | 122 55 45</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-17 16:38:54" itemprop="dateCreated datePublished" datetime="2022-12-17T16:38:54+00:00">2022-12-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-12-18 12:05:39" itemprop="dateModified" datetime="2022-12-18T12:05:39+00:00">2022-12-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Leetcode-122-Best-Time-to-Buy-and-Sell-Stock-II"><a href="#Leetcode-122-Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="Leetcode 122. Best Time to Buy and Sell Stock II"></a>Leetcode 122. Best Time to Buy and Sell Stock II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/</a></p>
-<ol>
-<li>局部最优：收集每天的正利润，全局最优：求得最大利润。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(prices)-<span class="number">1</span>):</span><br><span class="line">            profit = prices[i+<span class="number">1</span>]-prices[i] </span><br><span class="line">            <span class="keyword">if</span> profit &gt; <span class="number">0</span>:</span><br><span class="line">                res += profit</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-55-Jump-Game"><a href="#Leetcode-55-Jump-Game" class="headerlink" title="Leetcode 55. Jump Game"></a>Leetcode 55. Jump Game</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game/">https://leetcode.com/problems/jump-game/</a></p>
-<ol>
-<li><p>一开始写成先跳最大的了</p>
-<p>每次移动取最大跳跃步数（得到最大的覆盖范围），每移动一个单位，就更新最大覆盖范围。</p>
-<p><strong>贪心算法局部最优解：每次取最大跳跃步数（取最大覆盖范围），整体最优解：最后得到整体最大覆盖范围，看是否能到终点</strong>。</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canJump</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        cover = <span class="number">0</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums) == <span class="number">1</span>: </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> i &lt;= cover:</span><br><span class="line">            cover = <span class="built_in">max</span>(i + nums[i], cover)</span><br><span class="line">            <span class="keyword">if</span> cover &gt;= <span class="built_in">len</span>(nums) - <span class="number">1</span>: </span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-45-Jump-Game-II"><a href="#Leetcode-45-Jump-Game-II" class="headerlink" title="Leetcode 45. Jump Game II"></a>Leetcode 45. Jump Game II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game-ii/">https://leetcode.com/problems/jump-game-ii/</a></p>
-<ol>
-<li><p><strong>从覆盖范围出发，不管怎么跳，覆盖范围内一定是可以跳到的，以最小的步数增加覆盖范围，覆盖范围一旦覆盖了终点，得到的就是最小步数</strong></p>
-<p><strong>这里需要统计两个覆盖范围，当前这一步的最大覆盖和下一步最大覆盖</strong>。</p>
-<p>如果移动下标达到了当前这一步的最大覆盖最远距离了，还没有到终点的话，那么就必须再走一步来增加覆盖范围，直到覆盖范围覆盖了终点。</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">jump</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums) == <span class="number">1</span>: </span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        curDistance = <span class="number">0</span></span><br><span class="line">        nextDistance = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            nextDistance = <span class="built_in">max</span>(i + nums[i], nextDistance)</span><br><span class="line">            <span class="keyword">if</span> i == curDistance: </span><br><span class="line">                <span class="keyword">if</span> curDistance != <span class="built_in">len</span>(nums) - <span class="number">1</span>:</span><br><span class="line">                    ans += <span class="number">1</span></span><br><span class="line">                    curDistance = nextDistance</span><br><span class="line">                    <span class="keyword">if</span> nextDistance &gt;= <span class="built_in">len</span>(nums) - <span class="number">1</span>: </span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>简化</p>
-<p><strong>针对于方法一的特殊情况，可以统一处理</strong>，即：移动下标只要遇到当前覆盖最远距离的下标，直接步数加一，不考虑是不是终点的情况。</p>
-<p>想要达到这样的效果，只要让移动下标，最大只能移动到nums.size - 2的地方就可以了。</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">jump</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums) == <span class="number">1</span>: </span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        curDistance = <span class="number">0</span></span><br><span class="line">        nextDistance = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)-<span class="number">1</span>):</span><br><span class="line">            nextDistance = <span class="built_in">max</span>(i + nums[i], nextDistance)</span><br><span class="line">            <span class="keyword">if</span> i == curDistance: </span><br><span class="line">                <span class="keyword">if</span> curDistance != <span class="built_in">len</span>(nums) - <span class="number">1</span>:</span><br><span class="line">                    ans += <span class="number">1</span></span><br><span class="line">                    curDistance = nextDistance</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>贪心算法 </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/17/Day31/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="off">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | off">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/17/Day31/" class="post-title-link" itemprop="url">代码随想录 Day31 | Greedy Algorithm | 455 376 53</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-17 16:38:52" itemprop="dateCreated datePublished" datetime="2022-12-17T16:38:52+00:00">2022-12-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-12-18 11:22:25" itemprop="dateModified" datetime="2022-12-18T11:22:25+00:00">2022-12-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210917104315.png"></p>
-<p><strong>贪心的本质是选择每一阶段的局部最优，从而达到全局最优</strong>。</p>
-<p><strong>贪心算法并没有固定的套路</strong>。<strong>常识性推导加上举反例</strong>。</p>
-<p><strong>贪心一般解题步骤:</strong></p>
-<ul>
-<li>将问题分解为若干个子问题</li>
-<li>找出适合的贪心策略</li>
-<li>求解每一个子问题的最优解</li>
-<li>将局部最优解堆叠成全局最优解</li>
-</ul>
-<hr>
-<h3 id="Leetcode-455-Assign-Cookies"><a href="#Leetcode-455-Assign-Cookies" class="headerlink" title="Leetcode 455. Assign Cookies"></a>Leetcode 455. Assign Cookies</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/assign-cookies/">https://leetcode.com/problems/assign-cookies/</a></p>
-<p>还是要认真读题 you should give each child at most one cookie.</p>
-<ol>
-<li>小饼干先</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findContentChildren</span>(<span class="params">self, g: <span class="type">List</span>[<span class="built_in">int</span>], s: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s.sort()</span><br><span class="line">        g.sort()</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> res &lt;<span class="built_in">len</span>(g) <span class="keyword">and</span> s[j] &gt;= g[res]:  </span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>大胃王先</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="comment"># 思路2：优先考虑胃口</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findContentChildren</span>(<span class="params">self, g: <span class="type">List</span>[<span class="built_in">int</span>], s: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        g.sort()</span><br><span class="line">        s.sort()</span><br><span class="line">        start, count = <span class="built_in">len</span>(s) - <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(g) - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>): <span class="comment"># 先喂饱大胃口</span></span><br><span class="line">            <span class="keyword">if</span> start &gt;= <span class="number">0</span> <span class="keyword">and</span> g[index] &lt;= s[start]:</span><br><span class="line">                start -= <span class="number">1</span></span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="Leetcode-376-Wiggle-Subsequence"><a href="#Leetcode-376-Wiggle-Subsequence" class="headerlink" title="Leetcode 376. Wiggle Subsequence"></a>Leetcode 376. Wiggle Subsequence</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/wiggle-subsequence/">https://leetcode.com/problems/wiggle-subsequence/</a></p>
-<ol>
-<li><p>还是看了答案才写出来</p>
-<p><strong>让峰值尽可能的保持峰值，然后删除单一坡度上的节点</strong>。</p>
-<p>本题代码实现中，还有一些技巧，例如统计峰值的时候，数组最左面和最右面是最不好统计的。</p>
-<p>例如序列[2,5]，它的峰值数量是2，如果靠统计差值来计算峰值个数就需要考虑数组最左面和最右面的特殊情况。</p>
-<p>所以可以针对序列[2,5]，可以假设为[2,2,5]，这样它就有坡度了即preDiff &#x3D; 0</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt;= <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br><span class="line">        diff = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)-<span class="number">1</span>):</span><br><span class="line">            diff.append(nums[i+<span class="number">1</span>]- nums[i])</span><br><span class="line">       </span><br><span class="line">        pre = <span class="number">0</span></span><br><span class="line">        res = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(diff)):</span><br><span class="line">            <span class="keyword">if</span>  pre * diff[i] &lt;= <span class="number">0</span> <span class="keyword">and</span> diff[i]!=<span class="number">0</span> :</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">                pre = diff[i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-<p>2. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        preC,curC,res = <span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>  <span class="comment">#题目里nums长度大于等于1，当长度为1时，其实到不了for循环里去，所以不用考虑nums长度</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums) - <span class="number">1</span>):</span><br><span class="line">            curC = nums[i + <span class="number">1</span>] - nums[i]</span><br><span class="line">            <span class="keyword">if</span> curC * preC &lt;= <span class="number">0</span> <span class="keyword">and</span> curC !=<span class="number">0</span>:  <span class="comment">#差值为0时，不算摆动</span></span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">                preC = curC  <span class="comment">#如果当前差值和上一个差值为一正一负时，才需要用当前差值替代上一个差值</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>动态规划 先放一下</li>
-</ol>
-<hr>
-<h3 id="Leetcode-53-Maximum-Subarray"><a href="#Leetcode-53-Maximum-Subarray" class="headerlink" title="Leetcode 53. Maximum Subarray"></a>Leetcode 53. Maximum Subarray</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-subarray/">https://leetcode.com/problems/maximum-subarray/</a></p>
-<ol>
-<li><p>局部最优：当前“连续和”为负数的时候立刻放弃，从下一个元素重新计算“连续和”，因为负数加上下一个元素 “连续和”只会越来越小。</p>
-<p>全局最优：选取最大“连续和”</p>
-<p><strong>局部最优的情况下，并记录最大的“连续和”，可以推出全局最优</strong>。</p>
-<p>从代码角度上来讲：遍历nums，从头开始用count累积，如果count一旦加上nums[i]变为负数，那么就应该从nums[i+1]开始从0累积count了，因为已经变为负数的count，只会拖累总和。</p>
-<p><strong>这相当于是暴力解法中的不断调整最大子序和区间的起始位置</strong>。</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxSubArray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s = <span class="number">0</span></span><br><span class="line">        m = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            s += nums[i]</span><br><span class="line">            m = <span class="built_in">max</span>(s,m)</span><br><span class="line">            <span class="keyword">if</span> s &lt; <span class="number">0</span>:</span><br><span class="line">                s = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> m</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>贪心算法 从局部最优到全局最优</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -435,7 +184,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-15 14:08:12 / Modified: 15:14:45" itemprop="dateCreated datePublished" datetime="2022-12-15T14:08:12+00:00">2022-12-15</time>
+      <time title="Created: 2022-12-15 22:08:12 / Modified: 23:14:45" itemprop="dateCreated datePublished" datetime="2022-12-15T22:08:12+08:00">2022-12-15</time>
     </span>
 
   
@@ -508,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/14/Day29/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/15/Day29/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -526,7 +275,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/14/Day29/" class="post-title-link" itemprop="url">代码随想录 Day29 | Backtracking | 491 46 47</a>
+          <a href="/2022/12/15/Day29/" class="post-title-link" itemprop="url">代码随想录 Day29 | Backtracking | 491 46 47</a>
         </h2>
 
         <div class="post-meta-container">
@@ -536,15 +285,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-12-14 22:16:37" itemprop="dateCreated datePublished" datetime="2022-12-14T22:16:37+00:00">2022-12-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-12-15 14:07:58" itemprop="dateModified" datetime="2022-12-15T14:07:58+00:00">2022-12-15</time>
+      <time title="Created: 2022-12-15 06:16:37 / Modified: 22:07:58" itemprop="dateCreated datePublished" datetime="2022-12-15T06:16:37+08:00">2022-12-15</time>
     </span>
 
   
@@ -615,7 +358,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/13/Day28/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/14/Day28/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -633,7 +376,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/13/Day28/" class="post-title-link" itemprop="url">代码随想录 Day28 | Backtracking | 93 78 90</a>
+          <a href="/2022/12/14/Day28/" class="post-title-link" itemprop="url">代码随想录 Day28 | Backtracking | 93 78 90</a>
         </h2>
 
         <div class="post-meta-container">
@@ -645,7 +388,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-13 22:57:34 / Modified: 23:32:56" itemprop="dateCreated datePublished" datetime="2022-12-13T22:57:34+00:00">2022-12-13</time>
+      <time title="Created: 2022-12-14 06:57:34 / Modified: 07:32:56" itemprop="dateCreated datePublished" datetime="2022-12-14T06:57:34+08:00">2022-12-14</time>
     </span>
 
   
@@ -710,7 +453,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/13/Day27/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/14/Day27/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -728,7 +471,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/13/Day27/" class="post-title-link" itemprop="url">代码随想录 Day27 | Backtracking | 39 40 131</a>
+          <a href="/2022/12/14/Day27/" class="post-title-link" itemprop="url">代码随想录 Day27 | Backtracking | 39 40 131</a>
         </h2>
 
         <div class="post-meta-container">
@@ -740,7 +483,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-13 22:07:39 / Modified: 23:32:50" itemprop="dateCreated datePublished" datetime="2022-12-13T22:07:39+00:00">2022-12-13</time>
+      <time title="Created: 2022-12-14 06:07:39 / Modified: 07:32:50" itemprop="dateCreated datePublished" datetime="2022-12-14T06:07:39+08:00">2022-12-14</time>
     </span>
 
   
@@ -838,7 +581,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/09/Day25/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/10/Day25/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -856,7 +599,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/09/Day25/" class="post-title-link" itemprop="url">代码随想录 Day25 | Backtracking | 216 17</a>
+          <a href="/2022/12/10/Day25/" class="post-title-link" itemprop="url">代码随想录 Day25 | Backtracking | 216 17</a>
         </h2>
 
         <div class="post-meta-container">
@@ -868,7 +611,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-09 19:25:57 / Modified: 20:14:57" itemprop="dateCreated datePublished" datetime="2022-12-09T19:25:57+00:00">2022-12-09</time>
+      <time title="Created: 2022-12-10 03:25:57 / Modified: 04:14:57" itemprop="dateCreated datePublished" datetime="2022-12-10T03:25:57+08:00">2022-12-10</time>
     </span>
 
   
@@ -941,7 +684,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/08/Day24/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/09/Day24/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -959,7 +702,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/08/Day24/" class="post-title-link" itemprop="url">代码随想录 Day24 | Backtracking | 理论 77</a>
+          <a href="/2022/12/09/Day24/" class="post-title-link" itemprop="url">代码随想录 Day24 | Backtracking | 理论 77</a>
         </h2>
 
         <div class="post-meta-container">
@@ -971,7 +714,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-08 17:40:42 / Modified: 18:57:58" itemprop="dateCreated datePublished" datetime="2022-12-08T17:40:42+00:00">2022-12-08</time>
+      <time title="Created: 2022-12-09 01:40:42 / Modified: 02:57:58" itemprop="dateCreated datePublished" datetime="2022-12-09T01:40:42+08:00">2022-12-09</time>
     </span>
 
   
@@ -1074,7 +817,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/08/Day23/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/09/Day23/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1092,7 +835,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/08/Day23/" class="post-title-link" itemprop="url">代码随想录 Day23 | Binary Tree | 669 108 538</a>
+          <a href="/2022/12/09/Day23/" class="post-title-link" itemprop="url">代码随想录 Day23 | Binary Tree | 669 108 538</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1104,7 +847,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-08 17:18:11 / Modified: 17:41:19" itemprop="dateCreated datePublished" datetime="2022-12-08T17:18:11+00:00">2022-12-08</time>
+      <time title="Created: 2022-12-09 01:18:11 / Modified: 01:41:19" itemprop="dateCreated datePublished" datetime="2022-12-09T01:18:11+08:00">2022-12-09</time>
     </span>
 
   
@@ -1210,7 +953,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-07 12:34:20 / Modified: 15:31:59" itemprop="dateCreated datePublished" datetime="2022-12-07T12:34:20+00:00">2022-12-07</time>
+      <time title="Created: 2022-12-07 20:34:20 / Modified: 23:31:59" itemprop="dateCreated datePublished" datetime="2022-12-07T20:34:20+08:00">2022-12-07</time>
     </span>
 
   
@@ -1284,6 +1027,267 @@
 
 <hr>
 <h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>二叉搜索树的最近公共祖先 二叉搜索树插入&#x2F;删除</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/07/Day21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/07/Day21/" class="post-title-link" itemprop="url">代码随想录 Day21 | Binary Tree | 530 501 236</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-12-07 09:16:07 / Modified: 10:01:11" itemprop="dateCreated datePublished" datetime="2022-12-07T09:16:07+08:00">2022-12-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Leetcode-530-Minimum-Absolute-Difference-in-BST"><a href="#Leetcode-530-Minimum-Absolute-Difference-in-BST" class="headerlink" title="Leetcode 530. Minimum Absolute Difference in BST"></a>Leetcode 530. Minimum Absolute Difference in BST</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-absolute-difference-in-bst/">https://leetcode.com/problems/minimum-absolute-difference-in-bst/</a></p>
+<ol>
+<li>中序遍历 然后遍历绝对差值</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        tree_list = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traverse</span>(<span class="params">root: TreeNode</span>) -&gt; <span class="literal">None</span>: </span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            traverse(root.left)</span><br><span class="line">            tree_list.append(root.val)</span><br><span class="line">            traverse(root.right)</span><br><span class="line">            </span><br><span class="line">        traverse(root) </span><br><span class="line"></span><br><span class="line">        minimum = <span class="number">10000</span>         </span><br><span class="line">       </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(tree_list)): </span><br><span class="line">            minimum = <span class="built_in">min</span>(minimum, tree_list[i] - tree_list[i - <span class="number">1</span>])              </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> minimum </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在中序遍历过程中计算</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        minimum = <span class="number">10000</span>   </span><br><span class="line">        pre = <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traverse</span>(<span class="params">root: TreeNode</span>) -&gt; <span class="literal">None</span>: </span><br><span class="line">            <span class="keyword">nonlocal</span> pre, minimum</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            traverse(root.left)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> pre != <span class="literal">None</span>:</span><br><span class="line">                minimum = <span class="built_in">min</span>(minimum, root.val - pre.val)</span><br><span class="line">            pre = root</span><br><span class="line">            </span><br><span class="line">            traverse(root.right)</span><br><span class="line">            </span><br><span class="line">        traverse(root) </span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> minimum </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>迭代（不想写了</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        stack = []</span><br><span class="line">        cur = root</span><br><span class="line">        pre = <span class="literal">None</span></span><br><span class="line">        result = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">or</span> stack:</span><br><span class="line">            <span class="keyword">if</span> cur: <span class="comment"># 指针来访问节点，访问到最底层</span></span><br><span class="line">                stack.append(cur)</span><br><span class="line">                cur = cur.left</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment"># 逐一处理节点</span></span><br><span class="line">                cur = stack.pop()</span><br><span class="line">                <span class="keyword">if</span> pre: <span class="comment"># 当前节点和前节点的值的差值</span></span><br><span class="line">                    result = <span class="built_in">min</span>(result, <span class="built_in">abs</span>(cur.val - pre.val))</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = cur.right</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-501-Find-Mode-in-Binary-Search-Tree"><a href="#Leetcode-501-Find-Mode-in-Binary-Search-Tree" class="headerlink" title="Leetcode 501. Find Mode in Binary Search Tree"></a>Leetcode 501. Find Mode in Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-mode-in-binary-search-tree/">https://leetcode.com/problems/find-mode-in-binary-search-tree/</a></p>
+<ol>
+<li><p>hash table 统计次数排序 （不是二叉树也可以</p>
+</li>
+<li><p>如果 频率等于最大频率，把这个元素加入到结果集中</p>
+<p>频率大于 max的时候，不仅要更新max，而且要清空结果集，因为结果集之前的元素都失效了</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findMode</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        maximum = <span class="number">1</span></span><br><span class="line">        pre = <span class="literal">None</span></span><br><span class="line">        freq = <span class="number">1</span></span><br><span class="line">        res = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traverse</span>(<span class="params">root: TreeNode</span>) -&gt; <span class="literal">None</span>: </span><br><span class="line">            <span class="keyword">nonlocal</span> pre, maximum, freq, res</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            traverse(root.left)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> pre != <span class="literal">None</span> <span class="keyword">and</span> pre.val == root.val:</span><br><span class="line">                freq += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> maximum == freq:</span><br><span class="line">                    res.append(root.val)</span><br><span class="line">                <span class="keyword">if</span> maximum &lt; freq:</span><br><span class="line">                    maximum = freq</span><br><span class="line">                    res = [root.val]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                freq = <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> maximum == freq:</span><br><span class="line">                    res.append(root.val)</span><br><span class="line">            pre = root</span><br><span class="line">            traverse(root.right)</span><br><span class="line">            </span><br><span class="line">        traverse(root) </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h3 id="Leetcode-236-Lowest-Common-Ancestor-of-a-Binary-Tree"><a href="#Leetcode-236-Lowest-Common-Ancestor-of-a-Binary-Tree" class="headerlink" title="Leetcode 236. Lowest Common Ancestor of a Binary Tree"></a>Leetcode 236. Lowest Common Ancestor of a Binary Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/</a></p>
+<ol>
+<li><p>想到了后序遍历 但没处理好p&#x2F;q是root</p>
+</li>
+<li><p>如果left 和 right都不为空，说明此时root就是最近公共节点。</p>
+<p>如果left为空，right不为空，就返回right，说明目标节点是通过right返回的，反之亦然。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root <span class="keyword">or</span> root == p <span class="keyword">or</span> root == q:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">        left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> left <span class="keyword">and</span> right:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span> left:</span><br><span class="line">            <span class="keyword">return</span> left</span><br><span class="line">        <span class="keyword">return</span> right</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>二叉搜索树的最小绝对差、众数</p>
+<p>二叉树的最近公共祖先 </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/05/Day20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="off">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | off">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/05/Day20/" class="post-title-link" itemprop="url">代码随想录 Day20 | Binary Tree | 654 617 700 98</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-05 22:12:44" itemprop="dateCreated datePublished" datetime="2022-12-05T22:12:44+08:00">2022-12-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-12-06 05:26:21" itemprop="dateModified" datetime="2022-12-06T05:26:21+08:00">2022-12-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Leetcode-654-Maximum-Binary-Tree"><a href="#Leetcode-654-Maximum-Binary-Tree" class="headerlink" title="Leetcode 654. Maximum Binary Tree"></a>Leetcode 654. Maximum Binary Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-binary-tree/">https://leetcode.com/problems/maximum-binary-tree/</a></p>
+<ol>
+<li>递归</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">constructMaximumBinaryTree</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">          </span><br><span class="line">        maximum = <span class="number">0</span></span><br><span class="line">        maxindex = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; maximum:</span><br><span class="line">                maximum = nums[i]</span><br><span class="line">                maxindex= i</span><br><span class="line">                </span><br><span class="line">        left = nums[:maxindex]</span><br><span class="line">        right = nums[maxindex+<span class="number">1</span>:]</span><br><span class="line">        </span><br><span class="line">        root = TreeNode(maximum)</span><br><span class="line">        root.left = self.constructMaximumBinaryTree(left) </span><br><span class="line">        root.right = self.constructMaximumBinaryTree(right) </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">constructMaximumBinaryTree</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">          </span><br><span class="line">        maxvalue = <span class="built_in">max</span>(nums)</span><br><span class="line">        index = nums.index(maxvalue)</span><br><span class="line">        </span><br><span class="line">        root = TreeNode(maxvalue)</span><br><span class="line"></span><br><span class="line">        left = nums[:index]</span><br><span class="line">        right = nums[index + <span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">        root.left = self.constructMaximumBinaryTree(left)</span><br><span class="line">        root.right = self.constructMaximumBinaryTree(right)</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-617-Merge-Two-Binary-Trees"><a href="#Leetcode-617-Merge-Two-Binary-Trees" class="headerlink" title="Leetcode 617. Merge Two Binary Trees"></a>Leetcode 617. Merge Two Binary Trees</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-two-binary-trees/">https://leetcode.com/problems/merge-two-binary-trees/</a></p>
+<ol>
+<li>还是递归（一次过</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTrees</span>(<span class="params">self, root1: <span class="type">Optional</span>[TreeNode], root2: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root1:</span><br><span class="line">            <span class="keyword">return</span> root2</span><br><span class="line">        <span class="keyword">elif</span> <span class="keyword">not</span> root2:</span><br><span class="line">            <span class="keyword">return</span> root1</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            root1.val += root2.val</span><br><span class="line">            root1.left = self.mergeTrees(root1.left,root2.left)</span><br><span class="line">            root1.right = self.mergeTrees(root1.right,root2.right)</span><br><span class="line">        <span class="keyword">return</span> root1</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h3 id="Leetcode-700-Search-in-a-Binary-Search-Tree"><a href="#Leetcode-700-Search-in-a-Binary-Search-Tree" class="headerlink" title="Leetcode 700. Search in a Binary Search Tree"></a>Leetcode 700. Search in a Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/search-in-a-binary-search-tree/description/">https://leetcode.com/problems/search-in-a-binary-search-tree/description/</a></p>
+<ol>
+<li>递归（easy</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">searchBST</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode], val: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[TreeNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">if</span> val == root.val:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span> val &gt; root.val:</span><br><span class="line">            <span class="keyword">return</span>  self.searchBST(root.right, val)</span><br><span class="line">        <span class="keyword">if</span> val &lt; root.val:</span><br><span class="line">            <span class="keyword">return</span>  self.searchBST(root.left, val)</span><br><span class="line">        </span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>迭代</li>
+</ol>
+<p>一提到二叉树遍历的迭代法，可能立刻想起使用栈来模拟深度遍历，使用队列来模拟广度遍历。</p>
+<p>对于二叉搜索树可就不一样了，因为二叉搜索树的特殊性，也就是节点的有序性，可以不使用辅助栈或者队列就可以写出迭代法。</p>
+<p>对于一般二叉树，递归过程中还有回溯的过程，例如走一个左方向的分支走到头了，那么要调头，在走右分支。</p>
+<p>而<strong>对于二叉搜索树，不需要回溯的过程，因为节点的有序性就帮我们确定了搜索的方向。</strong></p>
+<p>例如要搜索元素为3的节点，<strong>我们不需要搜索其他节点，也不需要做回溯，查找的路径已经规划好了。</strong></p>
+<p>中间节点如果大于3就向左走，如果小于3就向右走，如图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200812190213280.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">searchBST</span>(<span class="params">self, root: TreeNode, val: <span class="built_in">int</span></span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">while</span> root <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">if</span> val &lt; root.val: root = root.left</span><br><span class="line">            <span class="keyword">elif</span> val &gt; root.val: root = root.right</span><br><span class="line">            <span class="keyword">else</span>: <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="Leetcode-98-Validate-Binary-Search-Tree"><a href="#Leetcode-98-Validate-Binary-Search-Tree" class="headerlink" title="Leetcode 98. Validate Binary Search Tree"></a>Leetcode 98. Validate Binary Search Tree</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/validate-binary-search-tree/">https://leetcode.com/problems/validate-binary-search-tree/</a></p>
+<ol>
+<li>掉坑里了 没考虑到Example2的情况</li>
+<li>中序遍历 验证是否递增</li>
+</ol>
+<ul>
+<li>递归中序遍历将二叉搜索树转变成一个数组</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isValidBST</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        tree_list = []</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">traverse</span>(<span class="params">root: TreeNode</span>) -&gt; <span class="literal">None</span>: </span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            traverse(root.left)</span><br><span class="line">            tree_list.append(root.val)</span><br><span class="line">            traverse(root.right)</span><br><span class="line">            </span><br><span class="line">        traverse(root)          </span><br><span class="line">       </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(tree_list)): </span><br><span class="line">            <span class="keyword">if</span> tree_list[i] &lt;= tree_list[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>递归 定义一个全局变量，用来比较遍历的节点是否有序</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isValidBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="comment"># 规律: BST的中序遍历节点数值是从小到大. </span></span><br><span class="line">        cur_max = -<span class="built_in">float</span>(<span class="string">&quot;INF&quot;</span>)</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">__isValidBST</span>(<span class="params">root: TreeNode</span>) -&gt; <span class="built_in">bool</span>: </span><br><span class="line">            <span class="keyword">nonlocal</span> cur_max</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: </span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            </span><br><span class="line">            is_left_valid = __isValidBST(root.left)</span><br><span class="line">            <span class="keyword">if</span> cur_max &lt; root.val: </span><br><span class="line">                cur_max = root.val</span><br><span class="line">            <span class="keyword">else</span>: </span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            is_right_valid = __isValidBST(root.right)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> is_left_valid <span class="keyword">and</span> is_right_valid</span><br><span class="line">        <span class="keyword">return</span> __isValidBST(root)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>迭代</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isValidBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        stack = []</span><br><span class="line">        cur = root</span><br><span class="line">        pre = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> cur <span class="keyword">or</span> stack:</span><br><span class="line">            <span class="keyword">if</span> cur: <span class="comment"># 指针来访问节点，访问到最底层</span></span><br><span class="line">                stack.append(cur)</span><br><span class="line">                cur = cur.left</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment"># 逐一处理节点</span></span><br><span class="line">                cur = stack.pop()</span><br><span class="line">                <span class="keyword">if</span> pre <span class="keyword">and</span> cur.val &lt;= pre.val: <span class="comment"># 比较当前节点和前节点的值的大小</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">                pre = cur </span><br><span class="line">                cur = cur.right</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="今日收获"><a href="#今日收获" class="headerlink" title="今日收获"></a>今日收获</h3><p>构造树 合并树 搜索树 验证树</p>
 
       
     </div>
